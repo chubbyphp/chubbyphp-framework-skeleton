@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 final class PingControllerTest extends AbstractIntegrationTest
 {
-    public function testPing()
+    public function testPing(): void
     {
         $now = \DateTime::createFromFormat(\DateTime::ATOM, date('c'));
 

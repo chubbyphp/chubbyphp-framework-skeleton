@@ -17,8 +17,10 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * @covers \App\Controller\PingController
+ *
+ * @internal
  */
-class PingControllerTest extends TestCase
+final class PingControllerTest extends TestCase
 {
     use MockByCallsTrait;
 
@@ -29,7 +31,7 @@ class PingControllerTest extends TestCase
 
         /** @var StreamInterface|MockObject $body */
         $body = $this->getMockByCalls(StreamInterface::class, [
-            Call::create('write')->with(new ArgumentCallback(function (string $body) {
+            Call::create('write')->with(new ArgumentCallback(function (string $body): void {
                 $data = json_decode($body, true);
 
                 self::assertArrayHasKey('datetime', $data);

@@ -11,6 +11,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
  * @covers \App\ServiceProvider\HttpFactoryServiceProvider
+ *
+ * @internal
  */
 final class HttpFactoryServiceProviderTest extends TestCase
 {

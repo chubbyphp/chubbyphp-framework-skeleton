@@ -14,7 +14,7 @@ final class HttpFactoryServiceProvider implements ServiceProviderInterface
     /**
      * @param Container $container
      */
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         $container[ResponseFactoryInterface::class] = function () {
             return new ResponseFactory();

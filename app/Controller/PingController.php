@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PingController implements RequestHandlerInterface
+final class PingController implements RequestHandlerInterface
 {
     /**
      * @var ResponseFactoryInterface
@@ -35,7 +35,8 @@ class PingController implements RequestHandlerInterface
             ->withHeader('Content-Type', 'application/json')
             ->withHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
             ->withHeader('Pragma', 'no-cache')
-            ->withHeader('Expires', '0');
+            ->withHeader('Expires', '0')
+        ;
 
         /** @var string $body */
         $body = json_encode(['datetime' => date(\DateTime::ATOM)]);

@@ -14,7 +14,7 @@ final class ControllerServiceProvider implements ServiceProviderInterface
     /**
      * @param Container $container
      */
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         $container[PingController::class] = function () use ($container) {
             return new PingController($container[ResponseFactoryInterface::class]);

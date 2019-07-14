@@ -13,6 +13,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
  * @covers \App\ServiceProvider\ControllerServiceProvider
+ *
+ * @internal
  */
 final class ControllerServiceProviderTest extends TestCase
 {

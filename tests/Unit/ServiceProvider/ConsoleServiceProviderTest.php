@@ -12,6 +12,8 @@ use Pimple\Container;
 
 /**
  * @covers \App\ServiceProvider\ConsoleServiceProvider
+ *
+ * @internal
  */
 final class ConsoleServiceProviderTest extends TestCase
 {
