@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Controller\PingController;
-use App\ServiceProvider\ControllerServiceProvider;
+use App\RequestHandler\PingRequestHandler;
 use App\ServiceProvider\HttpFactoryServiceProvider;
+use App\ServiceProvider\RequestHandlerServiceProvider;
 use Chubbyphp\Framework\Application;
 use Chubbyphp\Framework\ExceptionHandler;
 use Chubbyphp\Framework\Middleware\MiddlewareDispatcher;
@@ -21,12 +21,12 @@ require __DIR__.'/bootstrap.php';
 
 /** @var Container */
 $container = require __DIR__.'/container.php';
-$container->register(new ControllerServiceProvider());
+$container->register(new RequestHandlerServiceProvider());
 $container->register(new HttpFactoryServiceProvider());
 
 $psrContainer = new PsrContainer($container);
 
-$route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingController::class));
+$route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingRequestHandler::class));
 
 $web = new Application(
     new FastRouteRouter([$route], $container['routerCacheFile']),

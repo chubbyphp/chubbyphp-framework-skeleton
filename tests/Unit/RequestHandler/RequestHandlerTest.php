@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Controller;
+namespace App\Tests\Unit\RequestHandler;
 
-use App\Controller\PingController;
+use App\RequestHandler\PingRequestHandler;
 use Chubbyphp\Mock\Argument\ArgumentCallback;
 use Chubbyphp\Mock\Call;
 use Chubbyphp\Mock\MockByCallsTrait;
@@ -16,11 +16,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * @covers \App\Controller\PingController
+ * @covers \App\RequestHandler\PingRequestHandler
  *
  * @internal
  */
-final class PingControllerTest extends TestCase
+final class PingRequestHandlerTest extends TestCase
 {
     use MockByCallsTrait;
 
@@ -54,8 +54,8 @@ final class PingControllerTest extends TestCase
             Call::create('createResponse')->with(200, '')->willReturn($response),
         ]);
 
-        $controller = new PingController($responseFactory);
+        $RequestHandler = new PingRequestHandler($responseFactory);
 
-        self::assertSame($response, $controller->handle($request));
+        self::assertSame($response, $RequestHandler->handle($request));
     }
 }

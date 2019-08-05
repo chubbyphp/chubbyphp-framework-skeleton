@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ServiceProvider;
 
-use App\Controller\PingController;
-use App\ServiceProvider\ControllerServiceProvider;
+use App\RequestHandler\PingRequestHandler;
+use App\ServiceProvider\RequestHandlerServiceProvider;
 use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
- * @covers \App\ServiceProvider\ControllerServiceProvider
+ * @covers \App\ServiceProvider\RequestHandlerServiceProvider
  *
  * @internal
  */
-final class ControllerServiceProviderTest extends TestCase
+final class RequestHandlerServiceProviderTest extends TestCase
 {
     use MockByCallsTrait;
 
@@ -26,9 +26,9 @@ final class ControllerServiceProviderTest extends TestCase
             ResponseFactoryInterface::class => $this->getMockByCalls(ResponseFactoryInterface::class),
         ]);
 
-        $serviceProvider = new ControllerServiceProvider();
+        $serviceProvider = new RequestHandlerServiceProvider();
         $serviceProvider->register($container);
 
-        self::assertInstanceOf(PingController::class, $container[PingController::class]);
+        self::assertInstanceOf(PingRequestHandler::class, $container[PingRequestHandler::class]);
     }
 }

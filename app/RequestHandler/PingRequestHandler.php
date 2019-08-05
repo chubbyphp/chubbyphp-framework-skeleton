@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\RequestHandler;
 
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class PingController implements RequestHandlerInterface
+final class PingRequestHandler implements RequestHandlerInterface
 {
     /**
      * @var ResponseFactoryInterface

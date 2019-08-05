@@ -8,7 +8,7 @@ namespace App\Tests\Integration;
  * @internal
  * @coversNothing
  */
-final class PingControllerTest extends AbstractIntegrationTest
+final class PingRequestHandlerTest extends AbstractIntegrationTest
 {
     public function testPing(): void
     {
