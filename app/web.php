@@ -8,8 +8,8 @@ use App\RequestHandler\PingRequestHandler;
 use App\ServiceProvider\HttpFactoryServiceProvider;
 use App\ServiceProvider\RequestHandlerServiceProvider;
 use Chubbyphp\Framework\Application;
-use Chubbyphp\Framework\ExceptionHandler;
-use Chubbyphp\Framework\Middleware\MiddlewareDispatcher;
+use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
+use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\RequestHandler\LazyRequestHandler;
 use Chubbyphp\Framework\Router\FastRouteRouter;
 use Chubbyphp\Framework\Router\Route;
@@ -28,10 +28,12 @@ $psrContainer = new PsrContainer($container);
 
 $route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingRequestHandler::class));
 
-$web = new Application(
-    new FastRouteRouter([$route], $container['routerCacheFile']),
-    new MiddlewareDispatcher(),
-    new ExceptionHandler($container[ResponseFactoryInterface::class], $container['debug'])
-);
+$web = new Application([
+    new ExceptionMiddleware($container[ResponseFactoryInterface::class], $container['debug']),
+    new RouterMiddleware(
+        new FastRouteRouter([$route], $container['routerCacheFile']),
+        $container[ResponseFactoryInterface::class]
+    ),
+]);
 
 return $web;
