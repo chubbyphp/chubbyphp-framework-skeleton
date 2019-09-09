@@ -7,7 +7,7 @@ namespace App\ServiceProvider;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Zend\Diactoros\ResponseFactory;
+use Slim\Psr7\Factory\ResponseFactory;
 
 final class HttpFactoryServiceProvider implements ServiceProviderInterface
 {
