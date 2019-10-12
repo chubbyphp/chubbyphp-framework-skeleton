@@ -7,4 +7,4 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 $env = 'phpunit';
 
 $web = require __DIR__.'/../app/web.php';
-$web->send($web->handle((new ServerRequestFactory)->createFromGlobals()));
+$web->send($web->handle((new ServerRequestFactory())->createFromGlobals()));

@@ -17,11 +17,6 @@ abstract class AbstractConfig implements ConfigInterface
     {
     }
 
-    /**
-     * @param string $rootDir
-     *
-     * @return self
-     */
     public static function create(string $rootDir): ConfigInterface
     {
         $config = new static();
@@ -30,9 +25,6 @@ abstract class AbstractConfig implements ConfigInterface
         return $config;
     }
 
-    /**
-     * @return array
-     */
     public function getDirectories(): array
     {
         return [
@@ -40,14 +32,8 @@ abstract class AbstractConfig implements ConfigInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     abstract protected function getEnv(): string;
 
-    /**
-     * @return string
-     */
     protected function getCacheDir(): string
     {
         return $this->rootDir.'/var/cache/'.$this->getEnv();

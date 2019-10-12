@@ -11,12 +11,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 final class RequestHandlerServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * @param Container $container
-     */
     public function register(Container $container): void
     {
-        $container[PingRequestHandler::class] = function () use ($container) {
+        $container[PingRequestHandler::class] = static function () use ($container) {
             return new PingRequestHandler($container[ResponseFactoryInterface::class]);
         };
     }

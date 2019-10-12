@@ -6,9 +6,6 @@ namespace App\Config;
 
 class ProdConfig extends AbstractConfig
 {
-    /**
-     * @return array
-     */
     public function getConfig(): array
     {
         $cacheDir = $this->getCacheDir();
@@ -19,9 +16,6 @@ class ProdConfig extends AbstractConfig
         ];
     }
 
-    /**
-     * @return string
-     */
     protected function getEnv(): string
     {
         return 'prod';

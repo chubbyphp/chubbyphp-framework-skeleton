@@ -6,9 +6,6 @@ namespace App\Config;
 
 class DevConfig extends ProdConfig
 {
-    /**
-     * @return array
-     */
     public function getConfig(): array
     {
         $config = parent::getConfig();
@@ -18,9 +15,6 @@ class DevConfig extends ProdConfig
         return $config;
     }
 
-    /**
-     * @return string
-     */
     protected function getEnv(): string
     {
         return 'dev';

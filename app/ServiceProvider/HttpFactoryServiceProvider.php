@@ -11,12 +11,9 @@ use Slim\Psr7\Factory\ResponseFactory;
 
 final class HttpFactoryServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * @param Container $container
-     */
     public function register(Container $container): void
     {
-        $container[ResponseFactoryInterface::class] = function () {
+        $container[ResponseFactoryInterface::class] = static function () {
             return new ResponseFactory();
         };
     }

@@ -6,9 +6,6 @@ namespace App\Config;
 
 final class PhpunitConfig extends DevConfig
 {
-    /**
-     * @return string
-     */
     protected function getEnv(): string
     {
         return 'phpunit';

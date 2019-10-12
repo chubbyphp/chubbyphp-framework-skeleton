@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 require __DIR__.'/bootstrap.php';
 
-/** @var Container */
+/** @var Container $container */
 $container = require __DIR__.'/container.php';
 $container->register(new RequestHandlerServiceProvider());
 $container->register(new HttpFactoryServiceProvider());
@@ -28,12 +28,10 @@ $psrContainer = new PsrContainer($container);
 
 $route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingRequestHandler::class));
 
-$web = new Application([
+return new Application([
     new ExceptionMiddleware($container[ResponseFactoryInterface::class], $container['debug']),
     new RouterMiddleware(
         new FastRouteRouter([$route], $container['routerCacheFile']),
         $container[ResponseFactoryInterface::class]
     ),
 ]);
-
-return $web;
