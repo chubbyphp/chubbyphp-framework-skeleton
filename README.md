@@ -19,8 +19,8 @@ A minimal skeleton to start with a minimal php project.
  * [chubbyphp/chubbyphp-framework][21]: ^2.3
  * [nikic/fast-route][22]: ^1.3
  * [pimple/pimple][23]: ^3.2.3
- * [slim/psr7][24]: ^0.5
- * [symfony/console][25]: ^4.3.4
+ * [slim/psr7][24]: ^0.6
+ * [symfony/console][25]: ^4.3.5
 
 ## Installation
 
