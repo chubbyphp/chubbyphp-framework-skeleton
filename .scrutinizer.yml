@@ -12,6 +12,8 @@ build:
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'php-clover'
+            -
+                command: 'vendor/bin/phpunit --testsuite=Integration'
 
 checks:
     php: true
