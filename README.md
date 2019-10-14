@@ -1,8 +1,7 @@
 # chubbyphp-framework-skeleton
 
 [![Build Status](https://api.travis-ci.org/chubbyphp/chubbyphp-framework-skeleton.png?branch=master)](https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chubbyphp/chubbyphp-framework-skeleton/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chubbyphp/chubbyphp-framework-skeleton/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/chubbyphp/chubbyphp-framework-skeleton/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chubbyphp/chubbyphp-framework-skeleton/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/chubbyphp/chubbyphp-framework-skeleton/badge.svg?branch=master)](https://coveralls.io/github/chubbyphp/chubbyphp-framework-skeleton?branch=chubbyphp-framework)
 [![Total Downloads](https://poser.pugx.org/chubbyphp/chubbyphp-framework-skeleton/downloads.png)](https://packagist.org/packages/chubbyphp/chubbyphp-framework-skeleton)
 [![Monthly Downloads](https://poser.pugx.org/chubbyphp/chubbyphp-framework-skeleton/d/monthly)](https://packagist.org/packages/chubbyphp/chubbyphp-framework-skeleton)
 [![Latest Stable Version](https://poser.pugx.org/chubbyphp/chubbyphp-framework-skeleton/v/stable.png)](https://packagist.org/packages/chubbyphp/chubbyphp-framework-skeleton)
