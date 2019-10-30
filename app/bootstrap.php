@@ -8,4 +8,4 @@ use Chubbyphp\Framework\ErrorHandler;
 
 require __DIR__.'/../vendor/autoload.php';
 
-set_error_handler([ErrorHandler::class, 'handle']);
+set_error_handler([new ErrorHandler(), 'errorToException']);
