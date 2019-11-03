@@ -6,7 +6,7 @@ namespace App\Tests;
 
 use PHPUnit\Runner\BeforeTestHook;
 
-final class PhpServerTestListener implements BeforeTestHook
+final class PhpServerTestHook implements BeforeTestHook
 {
     const PHP_SERVER_PORT = 49199;
     const ENV_INTEGRATION_ENDPOINT = 'INTEGRATION_ENDPOINT';
@@ -23,9 +23,6 @@ final class PhpServerTestListener implements BeforeTestHook
         }
     }
 
-    /**
-     * @param string $test
-     */
     public function executeBeforeTest(string $test): void
     {
         if (null !== $this->serverPid) {
@@ -44,11 +41,6 @@ final class PhpServerTestListener implements BeforeTestHook
         $this->startServer();
     }
 
-    /**
-     * @param string $test
-     *
-     * @return bool
-     */
     private function isIntegrationTest(string $test): bool
     {
         return 0 === strpos($test, 'App\\Tests\\Integration');
