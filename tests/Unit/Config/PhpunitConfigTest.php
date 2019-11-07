@@ -17,7 +17,7 @@ final class PhpunitConfigTest extends TestCase
 {
     public function testGetConfig(): void
     {
-        $config = PhpunitConfig::create('/path/to/root');
+        $config = new PhpunitConfig('/path/to/root');
 
         self::assertSame([
             'debug' => true,
@@ -27,10 +27,17 @@ final class PhpunitConfigTest extends TestCase
 
     public function testGetDirectories(): void
     {
-        $config = PhpunitConfig::create('/path/to/root');
+        $config = new PhpunitConfig('/path/to/root');
 
         self::assertSame([
             'cache' => '/path/to/root/var/cache/phpunit',
         ], $config->getDirectories());
+    }
+
+    public function testGetEnvironment(): void
+    {
+        $config = new PhpunitConfig('/path/to/root');
+
+        self::assertSame('phpunit', $config->getEnvironment());
     }
 }

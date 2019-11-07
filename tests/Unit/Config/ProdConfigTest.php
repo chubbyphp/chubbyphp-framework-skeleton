@@ -17,7 +17,7 @@ final class ProdConfigTest extends TestCase
 {
     public function testGetConfig(): void
     {
-        $config = ProdConfig::create('/path/to/root');
+        $config = new ProdConfig('/path/to/root');
 
         self::assertSame([
             'debug' => false,
@@ -27,10 +27,17 @@ final class ProdConfigTest extends TestCase
 
     public function testGetDirectories(): void
     {
-        $config = ProdConfig::create('/path/to/root');
+        $config = new ProdConfig('/path/to/root');
 
         self::assertSame([
             'cache' => '/path/to/root/var/cache/prod',
         ], $config->getDirectories());
+    }
+
+    public function testGetEnvironment(): void
+    {
+        $config = new ProdConfig('/path/to/root');
+
+        self::assertSame('prod', $config->getEnvironment());
     }
 }

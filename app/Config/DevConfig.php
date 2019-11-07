@@ -9,13 +9,14 @@ class DevConfig extends ProdConfig
     public function getConfig(): array
     {
         $config = parent::getConfig();
+
         $config['debug'] = true;
         $config['routerCacheFile'] = null;
 
         return $config;
     }
 
-    protected function getEnv(): string
+    public function getEnvironment(): string
     {
         return 'dev';
     }

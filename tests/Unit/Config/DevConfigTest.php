@@ -17,7 +17,7 @@ final class DevConfigTest extends TestCase
 {
     public function testGetConfig(): void
     {
-        $config = DevConfig::create('/path/to/root');
+        $config = new DevConfig('/path/to/root');
 
         self::assertSame([
             'debug' => true,
@@ -27,10 +27,17 @@ final class DevConfigTest extends TestCase
 
     public function testGetDirectories(): void
     {
-        $config = DevConfig::create('/path/to/root');
+        $config = new DevConfig('/path/to/root');
 
         self::assertSame([
             'cache' => '/path/to/root/var/cache/dev',
         ], $config->getDirectories());
+    }
+
+    public function testGetEnvironment(): void
+    {
+        $config = new DevConfig('/path/to/root');
+
+        self::assertSame('dev', $config->getEnvironment());
     }
 }
