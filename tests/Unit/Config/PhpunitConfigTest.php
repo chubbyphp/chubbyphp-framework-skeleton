@@ -34,10 +34,10 @@ final class PhpunitConfigTest extends TestCase
         ], $config->getDirectories());
     }
 
-    public function testGetEnvironment(): void
+    public function testgetEnv(): void
     {
         $config = new PhpunitConfig('/path/to/root');
 
-        self::assertSame('phpunit', $config->getEnvironment());
+        self::assertSame('phpunit', $config->getEnv());
     }
 }

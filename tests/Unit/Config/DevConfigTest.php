@@ -34,10 +34,10 @@ final class DevConfigTest extends TestCase
         ], $config->getDirectories());
     }
 
-    public function testGetEnvironment(): void
+    public function testgetEnv(): void
     {
         $config = new DevConfig('/path/to/root');
 
-        self::assertSame('dev', $config->getEnvironment());
+        self::assertSame('dev', $config->getEnv());
     }
 }

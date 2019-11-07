@@ -27,6 +27,6 @@ abstract class AbstractConfig implements ConfigInterface
 
     protected function getCacheDir(): string
     {
-        return $this->rootDir.'/var/cache/'.$this->getEnvironment();
+        return $this->rootDir.'/var/cache/'.$this->getEnv();
     }
 }

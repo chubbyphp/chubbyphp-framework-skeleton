@@ -34,10 +34,10 @@ final class ProdConfigTest extends TestCase
         ], $config->getDirectories());
     }
 
-    public function testGetEnvironment(): void
+    public function testgetEnv(): void
     {
         $config = new ProdConfig('/path/to/root');
 
-        self::assertSame('prod', $config->getEnvironment());
+        self::assertSame('prod', $config->getEnv());
     }
 }

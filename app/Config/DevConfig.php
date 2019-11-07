@@ -16,7 +16,7 @@ class DevConfig extends ProdConfig
         return $config;
     }
 
-    public function getEnvironment(): string
+    public function getEnv(): string
     {
         return 'dev';
     }
