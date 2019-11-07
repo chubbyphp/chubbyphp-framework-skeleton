@@ -8,6 +8,7 @@ use App\RequestHandler\PingRequestHandler;
 use App\ServiceProvider\HttpFactoryServiceProvider;
 use App\ServiceProvider\RequestHandlerServiceProvider;
 use Chubbyphp\Framework\Application;
+use Chubbyphp\Framework\ErrorHandler;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\RequestHandler\LazyRequestHandler;
@@ -17,21 +18,25 @@ use Pimple\Container;
 use Pimple\Psr11\Container as PsrContainer;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-require __DIR__.'/bootstrap.php';
+require __DIR__.'/../vendor/autoload.php';
 
-/** @var Container $container */
-$container = require __DIR__.'/container.php';
-$container->register(new RequestHandlerServiceProvider());
-$container->register(new HttpFactoryServiceProvider());
+return static function (string $env) {
+    set_error_handler([new ErrorHandler(), 'errorToException']);
 
-$psrContainer = new PsrContainer($container);
+    /** @var Container $container */
+    $container = (require __DIR__.'/container.php')($env);
+    $container->register(new HttpFactoryServiceProvider());
+    $container->register(new RequestHandlerServiceProvider());
 
-$route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingRequestHandler::class));
+    $psrContainer = new PsrContainer($container);
 
-return new Application([
-    new ExceptionMiddleware($container[ResponseFactoryInterface::class], $container['debug']),
-    new RouterMiddleware(
-        new FastRouteRouter([$route], $container['routerCacheFile']),
-        $container[ResponseFactoryInterface::class]
-    ),
-]);
+    $route = Route::get('/ping', 'ping', new LazyRequestHandler($psrContainer, PingRequestHandler::class));
+
+    return new Application([
+        new ExceptionMiddleware($container[ResponseFactoryInterface::class], $container['debug']),
+        new RouterMiddleware(
+            new FastRouteRouter([$route], $container['routerCacheFile']),
+            $container[ResponseFactoryInterface::class]
+        ),
+    ]);
+};
