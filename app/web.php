@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Config\DevConfig;
+use App\Config\PhpunitConfig;
+use App\Config\ProdConfig;
 use App\RequestHandler\PingRequestHandler;
 use App\ServiceProvider\HttpFactoryServiceProvider;
 use App\ServiceProvider\RequestHandlerServiceProvider;
+use Chubbyphp\Config\ConfigProvider;
+use Chubbyphp\Config\ServiceProvider\ConfigServiceProvider;
 use Chubbyphp\Framework\Application;
 use Chubbyphp\Framework\ErrorHandler;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
@@ -27,6 +32,16 @@ return static function (string $env) {
     $container = (require __DIR__.'/container.php')($env);
     $container->register(new HttpFactoryServiceProvider());
     $container->register(new RequestHandlerServiceProvider());
+
+    // always load this service provider last
+    // so that the values of other service providers can be overwritten.
+    $container->register(new ConfigServiceProvider(
+        new ConfigProvider([
+            new DevConfig(__DIR__.'/..'),
+            new PhpunitConfig(__DIR__.'/..'),
+            new ProdConfig(__DIR__.'/..'),
+        ])
+    ));
 
     $psrContainer = new PsrContainer($container);
 
