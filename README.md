@@ -14,12 +14,12 @@ A minimal skeleton to start with a minimal php project.
 ## Requirements
 
  * php: ^7.2
- * [chubbyphp/chubbyphp-config][20]: ^2.0@beta
+ * [chubbyphp/chubbyphp-config][20]: ^2.0
  * [chubbyphp/chubbyphp-framework][21]: ^2.4
  * [nikic/fast-route][22]: ^1.3
  * [pimple/pimple][23]: ^3.2.3
  * [slim/psr7][24]: ^0.6
- * [symfony/console][25]: ^4.3.5
+ * [symfony/console][25]: ^4.4|^5.0
 
 ## Installation
 
