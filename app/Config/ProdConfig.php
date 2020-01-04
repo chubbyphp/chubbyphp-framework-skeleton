@@ -6,6 +6,9 @@ namespace App\Config;
 
 class ProdConfig extends AbstractConfig
 {
+    /**
+     * @return array<mixed>
+     */
     public function getConfig(): array
     {
         $cacheDir = $this->getCacheDir();

@@ -18,6 +18,9 @@ abstract class AbstractConfig implements ConfigInterface
         $this->rootDir = $rootDir;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getDirectories(): array
     {
         return [
