@@ -12,7 +12,7 @@ A minimal skeleton to start with a minimal php project.
  * php: ^7.2
  * [chubbyphp/chubbyphp-config][20]: ^2.1
  * [chubbyphp/chubbyphp-container][21]: ^1.0.1
- * [chubbyphp/chubbyphp-framework][22]: ^2.6.1
+ * [chubbyphp/chubbyphp-framework][22]: ^2.7
  * [nikic/fast-route][23]: ^1.3
  * [slim/psr7][24]: ^1.0
  * [symfony/console][25]: ^4.4|^5.0
