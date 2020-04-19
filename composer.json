@@ -11,23 +11,23 @@
     ],
     "require": {
         "php": "^7.2",
-        "chubbyphp/chubbyphp-config": "^2.1",
-        "chubbyphp/chubbyphp-container": "^1.0.1",
-        "chubbyphp/chubbyphp-framework": "^2.7",
+        "chubbyphp/chubbyphp-config": "^2.1.1",
+        "chubbyphp/chubbyphp-container": "^1.0.3",
+        "chubbyphp/chubbyphp-framework": "^2.8",
         "nikic/fast-route": "^1.3",
         "slim/psr7": "^1.0",
-        "symfony/console": "^4.4|^5.0"
+        "symfony/console": "^4.4.7|^5.0.7"
     },
     "require-dev": {
         "chubbyphp/chubbyphp-dev-helper": "dev-master",
-        "chubbyphp/chubbyphp-mock": "^1.4.2",
-        "infection/infection": "^0.15",
+        "chubbyphp/chubbyphp-mock": "^1.4.5",
+        "infection/infection": "^0.15.3|^0.16.2",
         "mavimo/phpstan-junit": "^0.3",
         "php-coveralls/php-coveralls": "^2.2",
-        "phploc/phploc": "^5.0",
-        "phpstan/extension-installer": "^1.0.3",
-        "phpstan/phpstan": "^0.12.3",
-        "phpunit/phpunit": "^8.5.1"
+        "phploc/phploc": "^5.0|^6.0.2",
+        "phpstan/extension-installer": "^1.0.4",
+        "phpstan/phpstan": "^0.12.18",
+        "phpunit/phpunit": "^8.5.3|^9.1.1"
     },
     "autoload": {
         "psr-4": { "App\\": "app/" }
@@ -61,7 +61,7 @@
         ],
         "test:cs": "mkdir -p build && vendor/bin/php-cs-fixer fix --dry-run --stop-on-violation --cache-file=build/phpcs.cache",
         "test:infection": "vendor/bin/infection --threads=$(nproc) --min-msi=100 --verbose --coverage=build/phpunit",
-        "test:insights": "mkdir -p build && bash -c 'vendor/bin/phpinsights analyse -v --no-interaction --min-quality=97 --disable-security-check | tee build/phpinsights.log; if [ ${PIPESTATUS[0]} -ne \"0\" ]; then exit 1; fi'",
+        "test:insights": "mkdir -p build && bash -c 'vendor/bin/phpinsights analyse -v --no-interaction --min-quality=96 --disable-security-check | tee build/phpinsights.log; if [ ${PIPESTATUS[0]} -ne \"0\" ]; then exit 1; fi'",
         "test:integration": "vendor/bin/phpunit --testsuite=Integration --cache-result-file=build/phpunit/result.cache",
         "test:lint": "mkdir -p build && find app tests -name '*.php' -print0 | xargs -0 -n1 -P$(nproc) php -l | tee build/phplint.log",
         "test:loc": "mkdir -p build && vendor/bin/phploc app --verbose | tee build/phploc.log",
