@@ -11,11 +11,11 @@ A minimal skeleton to start with a minimal php project.
 
  * php: ^7.2
  * [chubbyphp/chubbyphp-config][20]: ^2.1.1
- * [chubbyphp/chubbyphp-container][21]: ^1.0.3
- * [chubbyphp/chubbyphp-framework][22]: ^2.8
+ * [chubbyphp/chubbyphp-container][21]: ^1.1
+ * [chubbyphp/chubbyphp-framework][22]: ^2.8.1
  * [nikic/fast-route][23]: ^1.3
  * [slim/psr7][24]: ^1.0
- * [symfony/console][25]: ^4.4.7|^5.0.7
+ * [symfony/console][25]: ^4.4.9|^5.1
 
 ## Installation
 
