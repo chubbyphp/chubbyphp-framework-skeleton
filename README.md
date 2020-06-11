@@ -25,6 +25,14 @@ Through [Composer](http://getcomposer.org) as [chubbyphp/chubbyphp-framework-ske
 composer create-project chubbyphp/chubbyphp-framework-skeleton myproject "dev-master"
 ```
 
+## Server
+
+### Builtin
+
+```bash
+APP_ENV=dev php -S localhost:10080 -t public public/index.php
+```
+
 ## Copyright
 
 Dominik Zogg 2020
