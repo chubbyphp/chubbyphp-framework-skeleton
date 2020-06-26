@@ -8,7 +8,7 @@ use App\RequestHandler\PingRequestHandler;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\RequestHandler\LazyRequestHandler;
-use Chubbyphp\Framework\Router\FastRouteRouter;
+use Chubbyphp\Framework\Router\FastRoute\Router;
 use Chubbyphp\Framework\Router\Route;
 use Chubbyphp\Framework\Router\RouterInterface;
 use Psr\Container\ContainerInterface;
@@ -35,7 +35,7 @@ final class ChubbyphpFrameworkServiceFactory
                 );
             },
             RouterInterface::class => static function (ContainerInterface $container) {
-                return new FastRouteRouter($container->get('routes'), $container->get('routerCacheFile'));
+                return new Router($container->get('routes'), $container->get('routerCacheFile'));
             },
             'routes' => static function (ContainerInterface $container) {
                 return [Route::get('/ping', 'ping', new LazyRequestHandler($container, PingRequestHandler::class))];
