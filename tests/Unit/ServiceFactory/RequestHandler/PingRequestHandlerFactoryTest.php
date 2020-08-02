@@ -2,33 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ServiceFactory;
+namespace App\Tests\Unit\ServiceFactory\RequestHandler;
 
 use App\RequestHandler\PingRequestHandler;
-use App\ServiceFactory\RequestHandlerServiceFactory;
+use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
 use Chubbyphp\Mock\Call;
 use Chubbyphp\Mock\MockByCallsTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 /**
- * @covers \App\ServiceFactory\RequestHandlerServiceFactory
+ * @covers \App\ServiceFactory\RequestHandler\PingRequestHandlerFactory
  *
  * @internal
  */
-final class RequestHandlerServiceFactoryTest extends TestCase
+final class PingRequestHandlerFactoryTest extends TestCase
 {
     use MockByCallsTrait;
 
-    public function testFactories(): void
-    {
-        $factories = (new RequestHandlerServiceFactory())();
-
-        self::assertCount(1, $factories);
-    }
-
-    public function testPingRequestHandler(): void
+    public function testInvoke(): void
     {
         /** @var ResponseFactoryInterface|MockObject $responseFactory */
         $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
@@ -38,13 +32,8 @@ final class RequestHandlerServiceFactoryTest extends TestCase
             Call::create('get')->with(ResponseFactoryInterface::class)->willReturn($responseFactory),
         ]);
 
-        $factories = (new RequestHandlerServiceFactory())();
+        $factory = new PingRequestHandlerFactory();
 
-        self::assertArrayHasKey(PingRequestHandler::class, $factories);
-
-        self::assertInstanceOf(
-            PingRequestHandler::class,
-            $factories[PingRequestHandler::class]($container)
-        );
+        self::assertInstanceOf(PingRequestHandler::class, $factory($container));
     }
 }
