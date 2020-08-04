@@ -52,7 +52,7 @@ final class PhpServerTestHook implements BeforeTestHook
 
         echo 'initialize: start'.PHP_EOL;
 
-        passthru($consolePath.' config:clean-directories cache --env=phpunit');
+        passthru($consolePath.' clean-directories cache --env=phpunit');
 
         echo 'initialize: end'.PHP_EOL.PHP_EOL;
     }
