@@ -14,8 +14,9 @@ A minimal skeleton to start with a minimal php project.
  * [chubbyphp/chubbyphp-framework][21]: ^3.1
  * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.0
  * [chubbyphp/chubbyphp-laminas-config][23]: ^1.0
- * [slim/psr7][24]: ^1.1
- * [symfony/console][25]: ^4.4.11|^5.1.3
+ * [monolog/monolog][24]: ^2.1.1
+ * [slim/psr7][25]: ^1.1
+ * [symfony/console][26]: ^4.4.11|^5.1.3
 
 ## Installation
 
@@ -43,5 +44,6 @@ Dominik Zogg 2020
 [21]: https://packagist.org/packages/chubbyphp/chubbyphp-framework
 [22]: https://packagist.org/packages/chubbyphp/chubbyphp-framework-router-fastroute
 [23]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
-[24]: https://packagist.org/packages/slim/psr7
-[25]: https://packagist.org/packages/symfony/console
+[24]: https://packagist.org/packages/monolog/monolog
+[25]: https://packagist.org/packages/slim/psr7
+[26]: https://packagist.org/packages/symfony/console

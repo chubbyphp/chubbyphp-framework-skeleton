@@ -12,6 +12,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @covers \App\ServiceFactory\Framework\ExceptionMiddlewareFactory
@@ -27,6 +28,9 @@ final class ExceptionMiddlewareFactoryTest extends TestCase
         /** @var ResponseFactoryInterface|MockObject $responseFactory */
         $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
 
+        /** @var LoggerInterface|MockObject $logger */
+        $logger = $this->getMockByCalls(LoggerInterface::class);
+
         $config = [
             'debug' => true,
         ];
@@ -35,6 +39,7 @@ final class ExceptionMiddlewareFactoryTest extends TestCase
         $container = $this->getMockByCalls(ContainerInterface::class, [
             Call::create('get')->with(ResponseFactoryInterface::class)->willReturn($responseFactory),
             Call::create('get')->with('config')->willReturn($config),
+            Call::create('get')->with(LoggerInterface::class)->willReturn($logger),
         ]);
 
         $factory = new ExceptionMiddlewareFactory();

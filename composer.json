@@ -15,6 +15,7 @@
         "chubbyphp/chubbyphp-framework": "^3.1",
         "chubbyphp/chubbyphp-framework-router-fastroute": "^1.0",
         "chubbyphp/chubbyphp-laminas-config": "^1.0",
+        "monolog/monolog": "^2.1.1",
         "slim/psr7": "^1.1",
         "symfony/console": "^4.4.11|^5.1.3"
     },

@@ -8,6 +8,7 @@ use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\Router\RouterInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Log\LoggerInterface;
 
 final class RouterMiddlewareFactory
 {
@@ -15,7 +16,8 @@ final class RouterMiddlewareFactory
     {
         return new RouterMiddleware(
             $container->get(RouterInterface::class),
-            $container->get(ResponseFactoryInterface::class)
+            $container->get(ResponseFactoryInterface::class),
+            $container->get(LoggerInterface::class)
         );
     }
 }

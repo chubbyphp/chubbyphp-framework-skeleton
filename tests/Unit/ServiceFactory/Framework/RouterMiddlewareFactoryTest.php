@@ -13,6 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @covers \App\ServiceFactory\Framework\RouterMiddlewareFactory
@@ -31,10 +32,14 @@ final class RouterMiddlewareFactoryTest extends TestCase
         /** @var ResponseFactoryInterface|MockObject $responseFactory */
         $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
 
+        /** @var LoggerInterface|MockObject $logger */
+        $logger = $this->getMockByCalls(LoggerInterface::class);
+
         /** @var ContainerInterface|MockObject $container */
         $container = $this->getMockByCalls(ContainerInterface::class, [
             Call::create('get')->with(RouterInterface::class)->willReturn($router),
             Call::create('get')->with(ResponseFactoryInterface::class)->willReturn($responseFactory),
+            Call::create('get')->with(LoggerInterface::class)->willReturn($logger),
         ]);
 
         $factory = new RouterMiddlewareFactory();
