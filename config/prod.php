@@ -16,21 +16,25 @@ use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\Router\RouterInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-$rootDir = realpath(__DIR__ .'/..');
+$rootDir  = \realpath(__DIR__ . '/..');
+$cacheDir = $rootDir . '/var/cache/' . $env;
 
-$config = [];
-$config['cacheDir'] = $rootDir . '/var/cache/' . $env;
-$config['directories'] = ['cache' => $config['cacheDir']];
-$config['debug'] = false;
-$config['dependencies'] = [];
-$config['dependencies']['factories'] = [];
-$config['dependencies']['factories']['routes'] = RoutesFactory::class;
-$config['dependencies']['factories'][CleanDirectoriesCommand::class] = CleanDirectoriesCommandFactory::class;
-$config['dependencies']['factories'][ExceptionMiddleware::class] = ExceptionMiddlewareFactory::class;
-$config['dependencies']['factories'][PingRequestHandler::class] = PingRequestHandlerFactory::class;
-$config['dependencies']['factories'][ResponseFactoryInterface::class] = ResponseFactoryFactory::class;
-$config['dependencies']['factories'][RouterInterface::class] = RouterFactory::class;
-$config['dependencies']['factories'][RouterMiddleware::class] = RouterMiddlewareFactory::class;
-$config['routerCacheFile'] = $config['cacheDir'] . '/router-cache.php';
-
-return $config;
+return [
+    'cacheDir' => $cacheDir,
+    'directories' => [
+        'cache' => $cacheDir,
+    ],
+    'debug' => false,
+    'dependencies' => [
+        'factories' => [
+            'routes' => RoutesFactory::class,
+            CleanDirectoriesCommand::class => CleanDirectoriesCommandFactory::class,
+            ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
+            PingRequestHandler::class => PingRequestHandlerFactory::class,
+            ResponseFactoryInterface::class => ResponseFactoryFactory::class,
+            RouterInterface::class => RouterFactory::class,
+            RouterMiddleware::class => RouterMiddlewareFactory::class,
+        ],
+    ],
+    'routerCacheFile' => $cacheDir . '/router-cache.php',
+];
