@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ServiceFactory;
+namespace App\Tests\Unit\ServiceFactory\Http;
 
-use App\ServiceFactory\ResponseFactoryFactory;
+use App\ServiceFactory\Http\ResponseFactoryFactory;
 use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +12,7 @@ use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 
 /**
- * @covers \App\ServiceFactory\ResponseFactoryFactory
+ * @covers \App\ServiceFactory\Http\ResponseFactoryFactory
  *
  * @internal
  */
