@@ -45,7 +45,7 @@
         }
     },
     "scripts": {
-        "clean-directories": "bin/console clean-directories cache",
+        "clean-directories": "bin/console clean-directories cache log",
         "fix:cs": "mkdir -p build && vendor/bin/php-cs-fixer fix --cache-file=build/phpcs.cache",
         "setup-dev": [
             "@clean-directories"
