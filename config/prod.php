@@ -35,13 +35,13 @@ return [
     'debug' => false,
     'dependencies' => [
         'factories' => [
-            RouteInterface::class.'[]' => RoutesFactory::class,
-            Command::class.'[]' => CommandsFactory::class,
             CleanDirectoriesCommand::class => CleanDirectoriesCommandFactory::class,
+            Command::class.'[]' => CommandsFactory::class,
             ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
             LoggerInterface::class => LoggerFactory::class,
             PingRequestHandler::class => PingRequestHandlerFactory::class,
             ResponseFactoryInterface::class => ResponseFactoryFactory::class,
+            RouteInterface::class.'[]' => RoutesFactory::class,
             RouterInterface::class => RouterFactory::class,
             RouterMiddleware::class => RouterMiddlewareFactory::class,
         ],
