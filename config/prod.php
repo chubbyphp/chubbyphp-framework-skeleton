@@ -14,14 +14,15 @@ use App\ServiceFactory\Logger\LoggerFactory;
 use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\RouterMiddleware;
+use Chubbyphp\Framework\Router\RouteInterface;
 use Chubbyphp\Framework\Router\RouterInterface;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Log\LoggerInterface;
 
-$rootDir  = \realpath(__DIR__ . '/..');
-$cacheDir = $rootDir . '/var/cache/' . $env;
-$logDir = $rootDir . '/var/log';
+$rootDir = \realpath(__DIR__.'/..');
+$cacheDir = $rootDir.'/var/cache/'.$env;
+$logDir = $rootDir.'/var/log';
 
 return [
     'cacheDir' => $cacheDir,
@@ -32,7 +33,7 @@ return [
     'debug' => false,
     'dependencies' => [
         'factories' => [
-            'routes' => RoutesFactory::class,
+            RouteInterface::class.'[]' => RoutesFactory::class,
             CleanDirectoriesCommand::class => CleanDirectoriesCommandFactory::class,
             ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
             LoggerInterface::class => LoggerFactory::class,
@@ -47,8 +48,8 @@ return [
     ],
     'monolog' => [
         'name' => 'skeleton',
-        'path' => $logDir . '/' . $env . '.log',
+        'path' => $logDir.'/'.$env.'.log',
         'level' => Logger::NOTICE,
     ],
-    'routerCacheFile' => $cacheDir . '/router-cache.php',
+    'routerCacheFile' => $cacheDir.'/router-cache.php',
 ];

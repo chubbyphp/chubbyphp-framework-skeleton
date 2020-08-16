@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ServiceFactory\Framework;
 
 use App\ServiceFactory\Framework\RouterFactory;
 use Chubbyphp\Framework\Router\FastRoute\Router;
+use Chubbyphp\Framework\Router\RouteInterface;
 use Chubbyphp\Mock\Call;
 use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -29,7 +30,7 @@ final class RouterFactoryTest extends TestCase
 
         /** @var ContainerInterface|MockObject $container */
         $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with('routes')->willReturn([]),
+            Call::create('get')->with(RouteInterface::class.'[]')->willReturn([]),
             Call::create('get')->with('config')->willReturn($config),
         ]);
 

@@ -7,12 +7,13 @@ namespace App\ServiceFactory\Framework;
 use App\RequestHandler\PingRequestHandler;
 use Chubbyphp\Framework\RequestHandler\LazyRequestHandler;
 use Chubbyphp\Framework\Router\Route;
+use Chubbyphp\Framework\Router\RouteInterface;
 use Psr\Container\ContainerInterface;
 
 final class RoutesFactory
 {
     /**
-     * @return array<int, Route>
+     * @return array<int, RouteInterface>
      */
     public function __invoke(ContainerInterface $container): array
     {
