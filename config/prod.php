@@ -42,9 +42,6 @@ return [
             RouterInterface::class => RouterFactory::class,
             RouterMiddleware::class => RouterMiddlewareFactory::class,
         ],
-        'aliases' => [
-            'logger' => LoggerInterface::class,
-        ],
     ],
     'monolog' => [
         'name' => 'skeleton',
