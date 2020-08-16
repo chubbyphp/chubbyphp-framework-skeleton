@@ -5,9 +5,9 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Command\CleanDirectoriesCommand;
 use Chubbyphp\Container\Container;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -24,5 +24,5 @@ $console = new Application();
 $console->getDefinition()->addOption(
     new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev')
 );
-$console->add($container->get(CleanDirectoriesCommand::class));
+$console->addCommands($container->get(Command::class.'[]'));
 $console->run($input);

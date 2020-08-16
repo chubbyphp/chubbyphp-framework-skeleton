@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Command\CleanDirectoriesCommand;
 use App\RequestHandler\PingRequestHandler;
 use App\ServiceFactory\Command\CleanDirectoriesCommandFactory;
+use App\ServiceFactory\Command\CommandsFactory;
 use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
 use App\ServiceFactory\Framework\RouterFactory;
 use App\ServiceFactory\Framework\RouterMiddlewareFactory;
@@ -19,6 +20,7 @@ use Chubbyphp\Framework\Router\RouterInterface;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Command\Command;
 
 $rootDir = \realpath(__DIR__.'/..');
 $cacheDir = $rootDir.'/var/cache/'.$env;
@@ -34,6 +36,7 @@ return [
     'dependencies' => [
         'factories' => [
             RouteInterface::class.'[]' => RoutesFactory::class,
+            Command::class.'[]' => CommandsFactory::class,
             CleanDirectoriesCommand::class => CleanDirectoriesCommandFactory::class,
             ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
             LoggerInterface::class => LoggerFactory::class,
