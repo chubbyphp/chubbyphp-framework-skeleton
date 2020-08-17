@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace App;
 
-use Chubbyphp\Container\Container;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -17,7 +17,7 @@ $input = new ArgvInput();
 
 $env = $input->getParameterOption(['--env', '-e'], 'dev');
 
-/** @var Container $container */
+/** @var ContainerInterface $container */
 $container = (require __DIR__.'/container.php')($env);
 
 $console = new Application();
