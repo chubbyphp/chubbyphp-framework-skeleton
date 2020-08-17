@@ -25,7 +25,9 @@ final class RouterFactoryTest extends TestCase
     public function testInvoke(): void
     {
         $config = [
-            'routerCacheFile' => sys_get_temp_dir().'/'.uniqid('fastroute-cache-').'.php',
+            'fastroute' => [
+                'cache' => sys_get_temp_dir().'/'.uniqid('fastroute-cache-').'.php',
+            ],
         ];
 
         /** @var ContainerInterface|MockObject $container */

@@ -27,11 +27,6 @@ $cacheDir = $rootDir.'/var/cache/'.$env;
 $logDir = $rootDir.'/var/log';
 
 return [
-    'cacheDir' => $cacheDir,
-    'directories' => [
-        'cache' => $cacheDir,
-        'log' => $logDir,
-    ],
     'debug' => false,
     'dependencies' => [
         'factories' => [
@@ -46,10 +41,16 @@ return [
             RouterMiddleware::class => RouterMiddlewareFactory::class,
         ],
     ],
+    'directories' => [
+        'cache' => $cacheDir,
+        'log' => $logDir,
+    ],
     'monolog' => [
         'name' => 'skeleton',
         'path' => $logDir.'/'.$env.'.log',
         'level' => Logger::NOTICE,
     ],
-    'routerCacheFile' => $cacheDir.'/router-cache.php',
+    'fastroute' => [
+        'cache' => $cacheDir.'/router-cache.php',
+    ],
 ];

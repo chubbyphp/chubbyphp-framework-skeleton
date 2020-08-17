@@ -12,6 +12,9 @@ final class RouterFactory
 {
     public function __invoke(ContainerInterface $container): Router
     {
-        return new Router($container->get(RouteInterface::class.'[]'), $container->get('config')['routerCacheFile']);
+        return new Router(
+            $container->get(RouteInterface::class.'[]'),
+            $container->get('config')['fastroute']['cache']
+        );
     }
 }
