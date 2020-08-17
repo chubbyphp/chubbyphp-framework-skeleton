@@ -45,12 +45,12 @@ return [
         'cache' => $cacheDir,
         'log' => $logDir,
     ],
+    'fastroute' => [
+        'cache' => $cacheDir.'/router-cache.php',
+    ],
     'monolog' => [
         'name' => 'skeleton',
         'path' => $logDir.'/'.$env.'.log',
         'level' => Logger::NOTICE,
-    ],
-    'fastroute' => [
-        'cache' => $cacheDir.'/router-cache.php',
     ],
 ];
