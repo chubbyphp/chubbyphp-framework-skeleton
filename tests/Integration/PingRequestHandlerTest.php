@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
+use App\Tests\AssertTrait;
+
 /**
  * @internal
  * @coversNothing
  */
 final class PingRequestHandlerTest extends AbstractIntegrationTest
 {
+    use AssertTrait;
+
     public function testPing(): void
     {
         $now = \DateTime::createFromFormat(\DateTime::ATOM, date('c'));
@@ -30,7 +34,7 @@ final class PingRequestHandlerTest extends AbstractIntegrationTest
 
         self::assertArrayHasKey('datetime', $ping);
 
-        self::assertRegExp(self::DATE_PATTERN, $ping['datetime']);
+        self::assertMatchesRegularExpression(self::DATE_PATTERN, $ping['datetime']);
 
         $datetime = new \DateTime($ping['datetime']);
 

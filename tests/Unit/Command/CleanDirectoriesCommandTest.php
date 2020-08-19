@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Command;
 
 use App\Command\CleanDirectoriesCommand;
+use App\Tests\AssertTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -16,6 +17,8 @@ use Symfony\Component\Console\Output\BufferedOutput;
  */
 final class CleanDirectoriesCommandTest extends TestCase
 {
+    use AssertTrait;
+
     public function testGetName(): void
     {
         $command = new CleanDirectoriesCommand([]);
@@ -67,8 +70,8 @@ EOT;
 
         $code = $command->run($input, $output);
 
-        self::assertDirectoryNotExists($cacheDir.'/some');
-        self::assertDirectoryNotExists($logDir.'/another');
+        self::assertDirectoryDoesNotExist($cacheDir.'/some');
+        self::assertDirectoryDoesNotExist($logDir.'/another');
 
         rmdir($cacheDir);
         rmdir($logDir);
