@@ -7,6 +7,7 @@ use App\RequestHandler\PingRequestHandler;
 use App\ServiceFactory\Command\CleanDirectoriesCommandFactory;
 use App\ServiceFactory\Command\CommandsFactory;
 use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
+use App\ServiceFactory\Framework\MiddlewaresFactory;
 use App\ServiceFactory\Framework\RouterFactory;
 use App\ServiceFactory\Framework\RouterMiddlewareFactory;
 use App\ServiceFactory\Framework\RoutesFactory;
@@ -19,6 +20,7 @@ use Chubbyphp\Framework\Router\RouteInterface;
 use Chubbyphp\Framework\Router\RouterInterface;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 
@@ -34,6 +36,7 @@ return [
             Command::class.'[]' => CommandsFactory::class,
             ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
             LoggerInterface::class => LoggerFactory::class,
+            MiddlewareInterface::class.'[]' => MiddlewaresFactory::class,
             PingRequestHandler::class => PingRequestHandlerFactory::class,
             ResponseFactoryInterface::class => ResponseFactoryFactory::class,
             RouteInterface::class.'[]' => RoutesFactory::class,

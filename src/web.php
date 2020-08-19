@@ -6,21 +6,16 @@ namespace App;
 
 use Chubbyphp\Framework\Application;
 use Chubbyphp\Framework\ErrorHandler;
-use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
-use Chubbyphp\Framework\Middleware\LazyMiddleware;
-use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Psr\Container\ContainerInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
 require __DIR__.'/../vendor/autoload.php';
 
-return static function (string $env) {
-    set_error_handler([new ErrorHandler(), 'errorToException']);
+set_error_handler([new ErrorHandler(), 'errorToException']);
 
+return static function (string $env) {
     /** @var ContainerInterface $container */
     $container = (require __DIR__.'/container.php')($env);
 
-    return new Application([
-        new LazyMiddleware($container, ExceptionMiddleware::class),
-        new LazyMiddleware($container, RouterMiddleware::class),
-    ]);
+    return new Application($container->get(MiddlewareInterface::class.'[]'));
 };
