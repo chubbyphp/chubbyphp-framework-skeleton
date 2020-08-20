@@ -6,6 +6,7 @@ namespace App;
 
 use Chubbyphp\Framework\Application;
 use Chubbyphp\Framework\ErrorHandler;
+use Doctrine\ORM\EntityManager;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
@@ -16,6 +17,8 @@ set_error_handler([new ErrorHandler(), 'errorToException']);
 return static function (string $env) {
     /** @var ContainerInterface $container */
     $container = (require __DIR__.'/container.php')($env);
+
+    $container->get(EntityManager::class);
 
     return new Application($container->get(MiddlewareInterface::class.'[]'));
 };
