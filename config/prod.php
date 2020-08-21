@@ -3,17 +3,17 @@
 declare(strict_types=1);
 
 use App\Command\CleanDirectoriesCommand;
+use App\Container\Command\CleanDirectoriesCommandFactory;
+use App\Container\Command\CommandsFactory;
+use App\Container\Framework\ExceptionMiddlewareFactory;
+use App\Container\Framework\MiddlewaresFactory;
+use App\Container\Framework\RouterFactory;
+use App\Container\Framework\RouterMiddlewareFactory;
+use App\Container\Framework\RoutesFactory;
+use App\Container\Http\ResponseFactoryFactory;
+use App\Container\Logger\LoggerFactory;
+use App\Container\RequestHandler\PingRequestHandlerFactory;
 use App\RequestHandler\PingRequestHandler;
-use App\ServiceFactory\Command\CleanDirectoriesCommandFactory;
-use App\ServiceFactory\Command\CommandsFactory;
-use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
-use App\ServiceFactory\Framework\MiddlewaresFactory;
-use App\ServiceFactory\Framework\RouterFactory;
-use App\ServiceFactory\Framework\RouterMiddlewareFactory;
-use App\ServiceFactory\Framework\RoutesFactory;
-use App\ServiceFactory\Http\ResponseFactoryFactory;
-use App\ServiceFactory\Logger\LoggerFactory;
-use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\RouterMiddleware;
 use Chubbyphp\Framework\Router\RouteInterface;
