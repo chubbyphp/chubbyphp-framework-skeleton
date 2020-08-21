@@ -15,13 +15,13 @@ final class LoggerFactory
 {
     public function __invoke(ContainerInterface $container): LoggerInterface
     {
-        $config = $container->get('config');
+        $config = $container->get('config')['monolog'];
 
-        return new Logger($config['monolog']['name'], [
+        return new Logger($config['name'], [
             new BufferHandler(
                 (new StreamHandler(
-                    $config['monolog']['path'],
-                    $config['monolog']['level']
+                    $config['path'],
+                    $config['level']
                 ))->setFormatter(new LogstashFormatter('app'))
             ),
         ]);
