@@ -10,12 +10,15 @@ A minimal skeleton to start with a minimal php project.
 ## Requirements
 
  * php: ^7.2
- * [chubbyphp/chubbyphp-framework][20]: ^3.1
+ * [chubbyphp/chubbyphp-deserialization][20]: ^2.18
  * [chubbyphp/chubbyphp-framework-router-fastroute][21]: ^1.0
- * [chubbyphp/chubbyphp-laminas-config][22]: ^1.0
- * [monolog/monolog][23]: ^2.1.1
- * [slim/psr7][24]: ^1.1
- * [symfony/console][25]: ^4.4.11|^5.1.3
+ * [chubbyphp/chubbyphp-framework][22]: ^3.1
+ * [chubbyphp/chubbyphp-laminas-config][23]: ^1.0
+ * [chubbyphp/chubbyphp-negotiation][24]: ^1.6
+ * [chubbyphp/chubbyphp-serialization][25]: ^2.14
+ * [monolog/monolog][26]: ^2.1.1
+ * [slim/psr7][27]: ^1.1
+ * [symfony/console][28]: ^4.4.11|^5.1.3
 
 ## Installation
 
@@ -39,9 +42,12 @@ Dominik Zogg 2020
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 
-[20]: https://packagist.org/packages/chubbyphp/chubbyphp-framework
+[20]: https://packagist.org/packages/chubbyphp/chubbyphp-deserialization
+[22]: https://packagist.org/packages/chubbyphp/chubbyphp-framework
 [21]: https://packagist.org/packages/chubbyphp/chubbyphp-framework-router-fastroute
-[22]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
-[23]: https://packagist.org/packages/monolog/monolog
-[24]: https://packagist.org/packages/slim/psr7
-[25]: https://packagist.org/packages/symfony/console
+[23]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
+[24]: https://packagist.org/packages/chubbyphp/chubbyphp-negotiation
+[25]: https://packagist.org/packages/chubbyphp/chubbyphp-serialization
+[26]: https://packagist.org/packages/monolog/monolog
+[27]: https://packagist.org/packages/slim/psr7
+[28]: https://packagist.org/packages/symfony/console

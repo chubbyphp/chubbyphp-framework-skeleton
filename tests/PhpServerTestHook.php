@@ -52,7 +52,11 @@ final class PhpServerTestHook implements BeforeTestHook
 
         echo 'initialize: start'.PHP_EOL;
 
-        passthru($consolePath.' clean-directories cache --env=phpunit');
+        passthru($consolePath.' dbal:database:drop --if-exists --force --env=phpunit');
+        passthru($consolePath.' dbal:database:create --env=phpunit');
+        passthru($consolePath.' orm:schema-tool:update --dump-sql --force --env=phpunit');
+
+        passthru($consolePath.' clean-directories cache log --env=phpunit');
 
         echo 'initialize: end'.PHP_EOL.PHP_EOL;
     }

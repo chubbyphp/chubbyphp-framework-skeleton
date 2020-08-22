@@ -2,6 +2,18 @@ dist: bionic
 
 language: php
 
+services:
+  - postgresql
+
+env:
+  global:
+    - APP_ENV=phpunit
+    - DATABASE_USER=postgres
+    - DATABASE_PASS=
+    - DATABASE_HOST=127.0.0.1
+    - DATABASE_PORT=5432
+    - DATABASE_NAME=petstore
+
 matrix:
   include:
     - php: 7.2
@@ -19,6 +31,7 @@ matrix:
     - php: nightly
 
 before_script:
+  - echo 'extension=apcu.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/apcu.ini
   - (phpenv config-rm xdebug.ini || exit 0)
   - pecl install pcov
   - echo 'Europe/Zurich' | sudo tee /etc/timezone

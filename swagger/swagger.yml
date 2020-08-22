@@ -1,0 +1,605 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:10080
+  - url: https://localhost:10443
+paths:
+  /api/ping:
+    get:
+      summary: Ping
+      operationId: ping
+      tags:
+        - system
+      responses:
+        '200':
+          description: Ping response with current date
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+        '500':
+          description: Server error
+  /api/pets:
+    get:
+      summary: List all pets
+      operationId: listPets
+      tags:
+        - pets
+      parameters:
+        - name: Accept
+          in: header
+          description: The accepted mimetype of the response
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: offset
+          in: query
+          description: Which is the first item to return, starting from 0
+          required: false
+          schema:
+            type: integer
+            example: '0'
+        - name: limit
+          in: query
+          description: How many items to return
+          required: false
+          schema:
+            type: integer
+            example: 20
+        - name: filters[name]
+          in: query
+          description: Filter by name
+          required: false
+          schema:
+            type: string
+            example: Cherry
+        - name: sort[name]
+          in: query
+          description: Sort by name
+          required: false
+          schema:
+            type: string
+            example: asc
+      responses:
+        '200':
+          description: Pets
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PetCollectionResponse"
+        '400':
+          description: Query validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestApiProblem'
+        '406':
+          description: Missing or not supported accept header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAcceptableApiProblem'
+        '415':
+          description: Missing or not supported content-type header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeApiProblem'
+        '500':
+          description: Server error
+    post:
+      summary: Create a pet
+      operationId: createPet
+      tags:
+        - pets
+      parameters:
+        - name: Accept
+          in: header
+          description: The accepted mimetype of the response
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: Content-Type
+          in: header
+          description: The mimetype of the request
+          schema:
+            type: string
+            example: application/json
+          required: true
+      requestBody:
+        description: Pet data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetRequest'
+      responses:
+        '201':
+          description: Pet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetResponse'
+        '406':
+          description: Missing or not supported accept header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAcceptableApiProblem'
+        '415':
+          description: Missing or not supported content-type header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeApiProblem'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntityApiProblem'
+        '500':
+          description: Server error
+  /api/pets/{id}:
+    get:
+      summary: Read a pet
+      operationId: readPet
+      tags:
+        - pets
+      parameters:
+        - name: Accept
+          in: header
+          description: The accepted mimetype of the response
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: id
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Pet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PetResponse"
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundApiProblem'
+        '406':
+          description: Missing or not supported accept header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAcceptableApiProblem'
+        '415':
+          description: Missing or not supported content-type header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeApiProblem'
+        '500':
+          description: Server error
+    put:
+      summary: Update a pet
+      operationId: updatePet
+      tags:
+        - pets
+      parameters:
+        - name: Accept
+          in: header
+          description: The accepted mimetype of the response
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: Content-Type
+          in: header
+          description: The mimetype of the request
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: id
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Pet data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetRequest'
+      responses:
+        '200':
+          description: Returns the updated pet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundApiProblem'
+        '406':
+          description: Missing or not supported accept header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAcceptableApiProblem'
+        '415':
+          description: Missing or not supported content-type header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeApiProblem'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntityApiProblem'
+        '500':
+          description: Server error
+    delete:
+      summary: Delete a pet
+      operationId: deletePet
+      tags:
+        - pets
+      parameters:
+        - name: Accept
+          in: header
+          description: The accepted mimetype of the response
+          schema:
+            type: string
+            example: application/json
+          required: true
+        - name: id
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Empty response
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundApiProblem'
+        '406':
+          description: Missing or not supported accept header
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAcceptableApiProblem'
+        '500':
+          description: Server error
+components:
+  schemas:
+    BadRequestApiProblem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc2616#section-10.4.2
+        title:
+          type: string
+          example: Bad Request
+        detail:
+          type: string
+          example: null
+        instance:
+          type: string
+          example: null
+        invalidParameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: limit
+              reason:
+                type: string
+                example: constraint.type.invalidtype
+              details:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: string
+                  wishedType:
+                    type: string
+                    example: integer
+        _type:
+          type: string
+          example: apiProblem
+    NotFoundApiProblem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc2616#section-10.4.5
+        title:
+          type: string
+          example: Not Found
+        detail:
+          type: string
+          example: null
+        instance:
+          type: string
+          example: null
+        _type:
+          type: string
+          example: apiProblem
+    NotAcceptableApiProblem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc2616#section-10.4.7
+        title:
+          type: string
+          example: Not Acceptable
+        detail:
+          type: string
+          example: null
+        instance:
+          type: string
+          example: null
+        accept:
+          type: string
+          example: text/html
+        acceptables:
+          type: array
+          items:
+            type: string
+            example: application/json
+        _type:
+          type: string
+          example: apiProblem
+    UnsupportedMediaTypeApiProblem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc2616#section-10.4.16
+        title:
+          type: string
+          example: Unsupported Media Type
+        detail:
+          type: string
+          example: null
+        instance:
+          type: string
+          example: null
+        mediaType:
+          type: string
+          example: text/html
+        supportedMediaTypes:
+          type: array
+          items:
+            type: string
+            example: application/json
+        _type:
+          type: string
+          example: apiProblem
+    UnprocessableEntityApiProblem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc4918#section-11.2
+        title:
+          type: string
+          example: Unprocessable Entity
+        detail:
+          type: string
+          example: null
+        instance:
+          type: string
+          example: null
+        invalidParameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: name
+              reason:
+                type: string
+                example: constraint.notblank.blank
+              details:
+                type: object
+        _type:
+          type: string
+          example: apiProblem
+    PingResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: datetime
+          example: "2019-09-11T11:28:42+00:00"
+    PetRequest:
+      required:
+        -name
+      type: object
+      properties:
+        name:
+          type: string
+          example: Kathy
+        tag:
+          type: string
+          example: 123.456.789
+        vaccination:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vaccination'
+    PetResponse:
+      type: object
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: c9b6657d-3809-45cf-9bf1-a0ccb31e0158
+            createdAt:
+              type: string
+              format: datetime
+              example: '2018-10-06T08:00:00+02:00'
+            updatedAt:
+              type: string
+              format: datetime
+              example: '2018-10-06T09:00:00+02:00'
+        - $ref: '#/components/schemas/PetRequest'
+        - type: object
+          properties:
+            _links:
+              type: object
+              properties:
+                read:
+                  type: object
+                  properties:
+                    href:
+                      type: string
+                      example: '/pets/c9b6657d-3809-45cf-9bf1-a0ccb31e0158'
+                    templated:
+                      type: boolean
+                      example: false
+                    rel:
+                      type: object
+                    attributes:
+                      type: object
+                      properties:
+                        method:
+                          type: string
+                          example: GET
+                update:
+                  type: object
+                  properties:
+                    href:
+                      type: string
+                      example: '/pets/c9b6657d-3809-45cf-9bf1-a0ccb31e0158'
+                    templated:
+                      type: boolean
+                      example: false
+                    rel:
+                      type: object
+                    attributes:
+                      type: object
+                      properties:
+                        method:
+                          type: string
+                          example: PUT
+                delete:
+                  type: object
+                  properties:
+                    href:
+                      type: string
+                      example: '/pets/c9b6657d-3809-45cf-9bf1-a0ccb31e0158'
+                    templated:
+                      type: boolean
+                      example: false
+                    rel:
+                      type: object
+                    attributes:
+                      type: object
+                      properties:
+                        method:
+                          type: string
+                          example: DELETE
+            _type:
+              type: string
+              example: pet
+    PetCollectionResponse:
+      type: object
+      properties:
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 20
+        count:
+          type: integer
+          example: 25
+        _embedded:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/PetResponse'
+        _links:
+          type: object
+          properties:
+            list:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: '/pets?offset=0&limit=20'
+                templated:
+                  type: boolean
+                  example: false
+                rel:
+                  type: object
+                attributes:
+                  type: object
+                  properties:
+                    method:
+                      type: string
+                      example: GET
+            create:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: '/pets'
+                templated:
+                  type: boolean
+                  example: false
+                rel:
+                  type: object
+                attributes:
+                  type: object
+                  properties:
+                    method:
+                      type: string
+                      example: POST
+        _type:
+          type: string
+          example: petCollection
+    Vaccination:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Rabies
