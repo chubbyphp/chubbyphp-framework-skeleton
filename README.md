@@ -12,9 +12,9 @@ A minimal skeleton to start with a minimal php project.
  * php: ^7.2
  * [chubbyphp/chubbyphp-framework][20]: ^3.1
  * [chubbyphp/chubbyphp-framework-router-fastroute][21]: ^1.0
- * [chubbyphp/chubbyphp-laminas-config][22]: ^1.0
+ * [chubbyphp/chubbyphp-laminas-config][22]: ^1.1
  * [monolog/monolog][23]: ^2.1.1
- * [slim/psr7][24]: ^1.1
+ * [slim/psr7][24]: ^1.2
  * [symfony/console][25]: ^4.4.11|^5.1.3
 
 ## Installation
