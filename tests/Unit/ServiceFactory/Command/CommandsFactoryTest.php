@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ServiceFactory\Command;
 
-use App\Command\CleanDirectoriesCommand;
 use App\ServiceFactory\Command\CommandsFactory;
+use Chubbyphp\CleanDirectories\Command\CleanDirectoriesCommand;
 use Chubbyphp\Mock\Call;
 use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Console\Command\Command;
 
 /**
  * @covers \App\ServiceFactory\Command\CommandsFactory
@@ -24,11 +23,9 @@ final class CommandsFactoryTest extends TestCase
 
     public function testInvoke(): void
     {
-        $cleanDirectoriesCommand = $this->getMockByCalls(Command::class);
-
         /** @var ContainerInterface|MockObject $container */
         $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with(CleanDirectoriesCommand::class)->willReturn($cleanDirectoriesCommand),
+            Call::create('get')->with('config')->willReturn(['directories' => ['directoryName' => 'directoryPath']]),
         ]);
 
         $factory = new CommandsFactory();
@@ -39,6 +36,9 @@ final class CommandsFactoryTest extends TestCase
 
         self::assertCount(1, $commands);
 
-        self::assertSame($cleanDirectoriesCommand, array_shift($commands));
+        /** @var CleanDirectoriesCommand $cleanDirectoriesCommand */
+        $cleanDirectoriesCommand = array_shift($commands);
+
+        self::assertInstanceOf(CleanDirectoriesCommand::class, $cleanDirectoriesCommand);
     }
 }

@@ -10,12 +10,13 @@ A minimal skeleton to start with a minimal php project.
 ## Requirements
 
  * php: ^7.2
- * [chubbyphp/chubbyphp-framework][20]: ^3.1
- * [chubbyphp/chubbyphp-framework-router-fastroute][21]: ^1.0
- * [chubbyphp/chubbyphp-laminas-config][22]: ^1.1
- * [monolog/monolog][23]: ^2.1.1
- * [slim/psr7][24]: ^1.2
- * [symfony/console][25]: ^4.4.11|^5.1.3
+ * [chubbyphp/chubbyphp-clean-directories][20]: ^1.0
+ * [chubbyphp/chubbyphp-framework][21]: ^3.1
+ * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.0
+ * [chubbyphp/chubbyphp-laminas-config][23]: ^1.1
+ * [monolog/monolog][24]: ^2.1.1
+ * [slim/psr7][25]: ^1.2
+ * [symfony/console][26]: ^4.4.11|^5.1.3
 
 ## Installation
 
@@ -39,9 +40,10 @@ Dominik Zogg 2020
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 
-[20]: https://packagist.org/packages/chubbyphp/chubbyphp-framework
-[21]: https://packagist.org/packages/chubbyphp/chubbyphp-framework-router-fastroute
-[22]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
-[23]: https://packagist.org/packages/monolog/monolog
-[24]: https://packagist.org/packages/slim/psr7
-[25]: https://packagist.org/packages/symfony/console
+[20]: https://packagist.org/packages/chubbyphp/chubbyphp-clean-directories
+[21]: https://packagist.org/packages/chubbyphp/chubbyphp-framework
+[22]: https://packagist.org/packages/chubbyphp/chubbyphp-framework-router-fastroute
+[23]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
+[24]: https://packagist.org/packages/monolog/monolog
+[25]: https://packagist.org/packages/slim/psr7
+[26]: https://packagist.org/packages/symfony/console

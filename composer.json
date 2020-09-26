@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "chubbyphp/chubbyphp-clean-directories": "^1.0",
         "chubbyphp/chubbyphp-framework": "^3.1",
         "chubbyphp/chubbyphp-framework-router-fastroute": "^1.0",
         "chubbyphp/chubbyphp-laminas-config": "^1.1",

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Command\CleanDirectoriesCommand;
 use App\RequestHandler\PingRequestHandler;
-use App\ServiceFactory\Command\CleanDirectoriesCommandFactory;
 use App\ServiceFactory\Command\CommandsFactory;
 use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
 use App\ServiceFactory\Framework\MiddlewaresFactory;
@@ -32,7 +30,6 @@ return [
     'debug' => false,
     'dependencies' => [
         'factories' => [
-            CleanDirectoriesCommand::class => CleanDirectoriesCommandFactory::class,
             Command::class.'[]' => CommandsFactory::class,
             ExceptionMiddleware::class => ExceptionMiddlewareFactory::class,
             LoggerInterface::class => LoggerFactory::class,

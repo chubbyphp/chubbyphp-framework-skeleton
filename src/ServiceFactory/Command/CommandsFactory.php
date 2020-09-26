@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ServiceFactory\Command;
 
-use App\Command\CleanDirectoriesCommand;
+use Chubbyphp\CleanDirectories\ServiceFactory\CleanDirectoriesCommandFactory;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
 
@@ -16,7 +16,7 @@ final class CommandsFactory
     public function __invoke(ContainerInterface $container): array
     {
         return [
-            $container->get(CleanDirectoriesCommand::class),
+            (new CleanDirectoriesCommandFactory())($container),
         ];
     }
 }
