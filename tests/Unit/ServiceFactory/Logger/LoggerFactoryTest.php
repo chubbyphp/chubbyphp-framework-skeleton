@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ServiceFactory\RequestHandler;
 
 use App\ServiceFactory\Logger\LoggerFactory;
+use App\Tests\Helper\AssertHelper;
 use Chubbyphp\Mock\Call;
 use Chubbyphp\Mock\MockByCallsTrait;
 use Monolog\Formatter\LogstashFormatter;
@@ -59,11 +60,8 @@ final class LoggerFactoryTest extends TestCase
 
         self::assertInstanceOf(BufferHandler::class, $bufferHandler);
 
-        $reflectionProperty = new \ReflectionProperty($bufferHandler, 'handler');
-        $reflectionProperty->setAccessible(true);
-
         /** @var StreamHandler $streamHandler */
-        $streamHandler = $reflectionProperty->getValue($bufferHandler);
+        $streamHandler = AssertHelper::readProperty('handler', $bufferHandler);
 
         self::assertInstanceOf(StreamHandler::class, $streamHandler);
 
