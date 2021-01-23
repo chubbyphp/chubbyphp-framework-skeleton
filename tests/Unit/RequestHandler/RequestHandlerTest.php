@@ -31,7 +31,7 @@ final class PingRequestHandlerTest extends TestCase
 
         /** @var StreamInterface|MockObject $body */
         $body = $this->getMockByCalls(StreamInterface::class, [
-            Call::create('write')->with(new ArgumentCallback(function (string $body): void {
+            Call::create('write')->with(new ArgumentCallback(static function (string $body): void {
                 $data = json_decode($body, true);
 
                 self::assertArrayHasKey('datetime', $data);
