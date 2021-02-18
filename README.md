@@ -49,7 +49,7 @@ APP_ENV=dev php -S localhost:10080 -t public public/index.php
 
 ## Copyright
 
-Dominik Zogg 2020
+Dominik Zogg 2021
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 
