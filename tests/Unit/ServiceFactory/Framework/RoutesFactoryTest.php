@@ -30,7 +30,7 @@ final class RoutesFactoryTest extends TestCase
         $factory = new RoutesFactory();
 
         self::assertEquals([
-            Route::get('/ping', 'ping', new LazyRequestHandler($container, PingRequestHandler::class)),
-        ], $factory($container));
+            'ping' => Route::get('/ping', 'ping', new LazyRequestHandler($container, PingRequestHandler::class)),
+        ], $factory($container)->getRoutesByName());
     }
 }

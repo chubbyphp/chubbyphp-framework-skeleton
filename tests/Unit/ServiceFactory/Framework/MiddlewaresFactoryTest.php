@@ -7,7 +7,7 @@ namespace App\Tests\Unit\ServiceFactory\Framework;
 use App\ServiceFactory\Framework\MiddlewaresFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\LazyMiddleware;
-use Chubbyphp\Framework\Middleware\RouterMiddleware;
+use Chubbyphp\Framework\Middleware\RouteMatcherMiddleware;
 use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -31,7 +31,7 @@ final class MiddlewaresFactoryTest extends TestCase
 
         self::assertEquals([
             new LazyMiddleware($container, ExceptionMiddleware::class),
-            new LazyMiddleware($container, RouterMiddleware::class),
+            new LazyMiddleware($container, RouteMatcherMiddleware::class),
         ], $factory($container));
     }
 }

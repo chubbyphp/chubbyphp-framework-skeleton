@@ -6,16 +6,18 @@ use App\RequestHandler\PingRequestHandler;
 use App\ServiceFactory\Command\CommandsFactory;
 use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
 use App\ServiceFactory\Framework\MiddlewaresFactory;
-use App\ServiceFactory\Framework\RouterFactory;
-use App\ServiceFactory\Framework\RouterMiddlewareFactory;
+use App\ServiceFactory\Framework\RouteMatcherFactory;
+use App\ServiceFactory\Framework\RouteMatcherMiddlewareFactory;
 use App\ServiceFactory\Framework\RoutesFactory;
+use App\ServiceFactory\Framework\UrlGeneratorFactory;
 use App\ServiceFactory\Http\ResponseFactoryFactory;
 use App\ServiceFactory\Logger\LoggerFactory;
 use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
-use Chubbyphp\Framework\Middleware\RouterMiddleware;
-use Chubbyphp\Framework\Router\RouteInterface;
-use Chubbyphp\Framework\Router\RouterInterface;
+use Chubbyphp\Framework\Middleware\RouteMatcherMiddleware;
+use Chubbyphp\Framework\Router\RouteMatcherInterface;
+use Chubbyphp\Framework\Router\RoutesInterface;
+use Chubbyphp\Framework\Router\UrlGeneratorInterface;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -36,9 +38,10 @@ return [
             MiddlewareInterface::class.'[]' => MiddlewaresFactory::class,
             PingRequestHandler::class => PingRequestHandlerFactory::class,
             ResponseFactoryInterface::class => ResponseFactoryFactory::class,
-            RouteInterface::class.'[]' => RoutesFactory::class,
-            RouterInterface::class => RouterFactory::class,
-            RouterMiddleware::class => RouterMiddlewareFactory::class,
+            RouteMatcherInterface::class => RouteMatcherFactory::class,
+            RouteMatcherMiddleware::class => RouteMatcherMiddlewareFactory::class,
+            RoutesInterface::class => RoutesFactory::class,
+            UrlGeneratorInterface::class => UrlGeneratorFactory::class,
         ],
     ],
     'directories' => [
