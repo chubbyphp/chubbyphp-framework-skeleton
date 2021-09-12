@@ -27,10 +27,12 @@ final class RoutesFactoryTest extends TestCase
         /** @var ContainerInterface|MockObject $container */
         $container = $this->getMockByCalls(ContainerInterface::class);
 
+        $r = static fn (string $name) => new LazyRequestHandler($container, $name);
+
         $factory = new RoutesFactory();
 
         self::assertEquals([
-            'ping' => Route::get('/ping', 'ping', new LazyRequestHandler($container, PingRequestHandler::class)),
+            'ping' => Route::get('/ping', 'ping', $r(PingRequestHandler::class)),
         ], $factory($container)->getRoutesByName());
     }
 }

@@ -15,8 +15,10 @@ final class RoutesFactory
 {
     public function __invoke(ContainerInterface $container): RoutesInterface
     {
+        $r = static fn (string $name) => new LazyRequestHandler($container, $name);
+
         return new Routes([
-            Route::get('/ping', 'ping', new LazyRequestHandler($container, PingRequestHandler::class)),
+            Route::get('/ping', 'ping', $r(PingRequestHandler::class)),
         ]);
     }
 }
