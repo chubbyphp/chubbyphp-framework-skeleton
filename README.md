@@ -28,8 +28,14 @@ A minimal skeleton to start with a minimal php project.
  * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.2
  * [chubbyphp/chubbyphp-laminas-config][23]: ^1.2.1
  * [monolog/monolog][24]: ^2.2
- * [slim/psr7][25]: ^1.4
- * [symfony/console][26]: ^4.4.23|^5.2.8
+ * [psr/container][25]: ^1.1|^2.0
+ * [psr/http-factory][26]: ^1.0.1
+ * [psr/http-message][27]: ^1.0.1
+ * [psr/http-server-handler][28]: ^1.0.1
+ * [psr/http-server-middleware][29]: ^1.0.1
+ * [psr/log][30]: ^1.1.4
+ * [slim/psr7][31]: ^1.4
+ * [symfony/console][32]: ^4.4.23|^5.2.8
 
 ## Installation
 
@@ -58,5 +64,11 @@ Dominik Zogg 2021
 [22]: https://packagist.org/packages/chubbyphp/chubbyphp-framework-router-fastroute
 [23]: https://packagist.org/packages/chubbyphp/chubbyphp-laminas-config
 [24]: https://packagist.org/packages/monolog/monolog
-[25]: https://packagist.org/packages/slim/psr7
-[26]: https://packagist.org/packages/symfony/console
+[25]: https://packagist.org/packages/psr/container
+[26]: https://packagist.org/packages/psr/http-factory
+[27]: https://packagist.org/packages/psr/http-message
+[28]: https://packagist.org/packages/psr/http-server-handler
+[29]: https://packagist.org/packages/psr/http-server-middleware
+[30]: https://packagist.org/packages/psr/log
+[31]: https://packagist.org/packages/slim/psr7
+[32]: https://packagist.org/packages/symfony/console
