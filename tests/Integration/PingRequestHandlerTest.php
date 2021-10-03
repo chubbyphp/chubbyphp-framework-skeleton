@@ -4,19 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
-use App\Tests\Helper\AssertTrait;
-
 /**
  * @internal
  * @coversNothing
  */
 final class PingRequestHandlerTest extends AbstractIntegrationTest
 {
-    use AssertTrait;
-
     public function testPing(): void
     {
-        $now = \DateTime::createFromFormat(\DateTime::ATOM, date('c'));
+        $now = \DateTimeImmutable::createFromFormat(\DateTime::ATOM, date('c'));
 
         $response = $this->httpRequest(
             'GET',
@@ -36,7 +32,7 @@ final class PingRequestHandlerTest extends AbstractIntegrationTest
 
         self::assertMatchesRegularExpression(self::DATE_PATTERN, $ping['datetime']);
 
-        $datetime = new \DateTime($ping['datetime']);
+        $datetime = new \DateTimeImmutable($ping['datetime']);
 
         self::assertGreaterThanOrEqual($now, $datetime);
     }

@@ -8,8 +8,8 @@ use PHPUnit\Runner\BeforeTestHook;
 
 final class PhpServerTestHook implements BeforeTestHook
 {
-    const PHP_SERVER_PORT = 49199;
-    const ENV_INTEGRATION_ENDPOINT = 'INTEGRATION_ENDPOINT';
+    public const PHP_SERVER_PORT = 49199;
+    public const ENV_INTEGRATION_ENDPOINT = 'INTEGRATION_ENDPOINT';
 
     private ?int $serverPid = null;
 
@@ -68,7 +68,7 @@ final class PhpServerTestHook implements BeforeTestHook
         $this->serverPid = (int) exec(sprintf('%s > /dev/null 2>&1 & echo $!', $command));
 
         while (true) {
-            if (is_resource(@fsockopen('localhost', self::PHP_SERVER_PORT))) {
+            if (\is_resource(@fsockopen('localhost', self::PHP_SERVER_PORT))) {
                 break;
             }
 

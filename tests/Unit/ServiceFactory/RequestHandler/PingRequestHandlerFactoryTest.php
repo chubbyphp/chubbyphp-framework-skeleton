@@ -24,7 +24,7 @@ final class PingRequestHandlerFactoryTest extends TestCase
 
     public function testInvoke(): void
     {
-        /** @var ResponseFactoryInterface|MockObject $responseFactory */
+        /** @var MockObject|ResponseFactoryInterface $responseFactory */
         $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
 
         /** @var ContainerInterface|MockObject $container */

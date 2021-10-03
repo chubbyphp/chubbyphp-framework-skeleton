@@ -26,10 +26,10 @@ final class RouteMatcherMiddlewareFactoryTest extends TestCase
 
     public function testInvoke(): void
     {
-        /** @var RouteMatcherInterface|MockObject $routeMatcher */
+        /** @var MockObject|RouteMatcherInterface $routeMatcher */
         $routeMatcher = $this->getMockByCalls(RouteMatcherInterface::class);
 
-        /** @var ResponseFactoryInterface|MockObject $responseFactory */
+        /** @var MockObject|ResponseFactoryInterface $responseFactory */
         $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
 
         /** @var LoggerInterface|MockObject $logger */
