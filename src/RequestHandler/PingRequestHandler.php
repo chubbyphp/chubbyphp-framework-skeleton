@@ -11,11 +11,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class PingRequestHandler implements RequestHandlerInterface
 {
-    private ResponseFactoryInterface $responseFactory;
-
-    public function __construct(ResponseFactoryInterface $responseFactory)
+    public function __construct(private ResponseFactoryInterface $responseFactory)
     {
-        $this->responseFactory = $responseFactory;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -28,7 +25,7 @@ final class PingRequestHandler implements RequestHandlerInterface
         ;
 
         /** @var string $body */
-        $body = json_encode(['datetime' => date(\DateTime::ATOM)]);
+        $body = json_encode(['datetime' => date(\DateTime::ATOM)], JSON_THROW_ON_ERROR);
 
         $response->getBody()->write($body);
 

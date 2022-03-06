@@ -22,20 +22,20 @@ A minimal skeleton to start with a minimal php project.
 
 ## Requirements
 
- * php: ^7.4|^8.0
- * [chubbyphp/chubbyphp-clean-directories][20]: ^1.1.1
- * [chubbyphp/chubbyphp-framework][21]: ^3.5
- * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.2
- * [chubbyphp/chubbyphp-laminas-config][23]: ^1.2.1
- * [monolog/monolog][24]: ^2.2
- * [psr/container][25]: ^1.1|^2.0
+ * php: ^8.0
+ * [chubbyphp/chubbyphp-clean-directories][20]: ^1.2
+ * [chubbyphp/chubbyphp-framework][21]: ^4.1
+ * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.3.1
+ * [chubbyphp/chubbyphp-laminas-config][23]: ^1.3
+ * [monolog/monolog][24]: ^2.3.5
+ * [psr/container][25]: ^1.1.2|^2.0.2
  * [psr/http-factory][26]: ^1.0.1
  * [psr/http-message][27]: ^1.0.1
  * [psr/http-server-handler][28]: ^1.0.1
  * [psr/http-server-middleware][29]: ^1.0.1
- * [psr/log][30]: ^1.1.4
- * [slim/psr7][31]: ^1.4
- * [symfony/console][32]: ^4.4.23|^5.2.8
+ * [psr/log][30]: ^1.1.4|^2.0|^3.0
+ * [slim/psr7][31]: ^1.5
+ * [symfony/console][32]: ^4.4.38|^5.4.5|^6.0
 
 ## Installation
 
@@ -55,7 +55,7 @@ APP_ENV=dev php -S localhost:10080 -t public public/index.php
 
 ## Copyright
 
-Dominik Zogg 2021
+Dominik Zogg 2022
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 

@@ -6,9 +6,7 @@ namespace App\Tests\Unit\ServiceFactory\Http;
 
 use App\ServiceFactory\Http\ResponseFactoryFactory;
 use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 
 /**
@@ -22,11 +20,8 @@ final class ResponseFactoryFactoryTest extends TestCase
 
     public function testInvoke(): void
     {
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class);
-
         $factory = new ResponseFactoryFactory();
 
-        self::assertInstanceOf(ResponseFactory::class, $factory($container));
+        self::assertInstanceOf(ResponseFactory::class, $factory());
     }
 }

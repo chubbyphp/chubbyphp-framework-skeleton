@@ -40,7 +40,7 @@ final class PhpServerTestHook implements BeforeTestHook
 
     private function isIntegrationTest(string $test): bool
     {
-        return 0 === strpos($test, 'App\\Tests\\Integration');
+        return str_starts_with($test, 'App\\Tests\\Integration');
     }
 
     private function initialize(): void

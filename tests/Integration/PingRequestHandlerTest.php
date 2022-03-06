@@ -26,7 +26,7 @@ final class PingRequestHandlerTest extends AbstractIntegrationTest
         self::assertSame('0', $response['headers']['expires'][0]);
         self::assertSame('no-cache', $response['headers']['pragma'][0]);
 
-        $ping = json_decode($response['body'], true);
+        $ping = json_decode($response['body'], true, 512, JSON_THROW_ON_ERROR);
 
         self::assertArrayHasKey('datetime', $ping);
 
