@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ServiceFactory\Framework;
 
 use App\RequestHandler\PingRequestHandler;
-use App\ServiceFactory\Framework\RoutesFactory;
+use App\ServiceFactory\Framework\RoutesByNameFactory;
 use Chubbyphp\Framework\RequestHandler\LazyRequestHandler;
 use Chubbyphp\Framework\Router\Route;
 use Chubbyphp\Mock\MockByCallsTrait;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
 /**
- * @covers \App\ServiceFactory\Framework\RoutesFactory
+ * @covers \App\ServiceFactory\Framework\RoutesByNameFactory
  *
  * @internal
  */
@@ -29,7 +29,7 @@ final class RoutesFactoryTest extends TestCase
 
         $r = static fn (string $name) => new LazyRequestHandler($container, $name);
 
-        $factory = new RoutesFactory();
+        $factory = new RoutesByNameFactory();
 
         self::assertEquals([
             'ping' => Route::get('/ping', 'ping', $r(PingRequestHandler::class)),

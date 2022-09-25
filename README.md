@@ -24,8 +24,8 @@ A minimal skeleton to start with a minimal php project.
 
  * php: ^8.0
  * [chubbyphp/chubbyphp-clean-directories][20]: ^1.2
- * [chubbyphp/chubbyphp-framework][21]: ^4.1
- * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^1.3.1
+ * [chubbyphp/chubbyphp-framework][21]: ^5.0.1
+ * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^2.0
  * [chubbyphp/chubbyphp-laminas-config][23]: ^1.3
  * [monolog/monolog][24]: ^2.3.5
  * [psr/container][25]: ^1.1.2|^2.0.2

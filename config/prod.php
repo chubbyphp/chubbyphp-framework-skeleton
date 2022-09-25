@@ -8,7 +8,7 @@ use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
 use App\ServiceFactory\Framework\MiddlewaresFactory;
 use App\ServiceFactory\Framework\RouteMatcherFactory;
 use App\ServiceFactory\Framework\RouteMatcherMiddlewareFactory;
-use App\ServiceFactory\Framework\RoutesFactory;
+use App\ServiceFactory\Framework\RoutesByNameFactory;
 use App\ServiceFactory\Framework\UrlGeneratorFactory;
 use App\ServiceFactory\Http\ResponseFactoryFactory;
 use App\ServiceFactory\Logger\LoggerFactory;
@@ -16,7 +16,7 @@ use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\RouteMatcherMiddleware;
 use Chubbyphp\Framework\Router\RouteMatcherInterface;
-use Chubbyphp\Framework\Router\RoutesInterface;
+use Chubbyphp\Framework\Router\RoutesByNameInterface;
 use Chubbyphp\Framework\Router\UrlGeneratorInterface;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -40,7 +40,7 @@ return [
             ResponseFactoryInterface::class => ResponseFactoryFactory::class,
             RouteMatcherInterface::class => RouteMatcherFactory::class,
             RouteMatcherMiddleware::class => RouteMatcherMiddlewareFactory::class,
-            RoutesInterface::class => RoutesFactory::class,
+            RoutesByNameInterface::class => RoutesByNameFactory::class,
             UrlGeneratorInterface::class => UrlGeneratorFactory::class,
         ],
     ],
