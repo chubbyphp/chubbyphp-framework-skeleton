@@ -55,7 +55,7 @@ APP_ENV=dev php -S localhost:10080 -t public public/index.php
 
 ## Copyright
 
-Dominik Zogg 2022
+2023 Dominik Zogg
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 
