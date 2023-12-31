@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
-use App\Tests\PhpServerTestHook;
+use App\Tests\PhpServerExtension;
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstractIntegrationTest extends TestCase
+abstract class AbstractIntegrationTestCase extends TestCase
 {
     /**
      * @var string
@@ -17,10 +17,7 @@ abstract class AbstractIntegrationTest extends TestCase
     public const DATE_PATTERN = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}$/';
     public const UUID_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/';
 
-    /**
-     * @var resource
-     */
-    private $curl;
+    private ?\CurlHandle $curl = null;
 
     /**
      * @throws \RuntimeException
@@ -63,10 +60,7 @@ abstract class AbstractIntegrationTest extends TestCase
         return ['status' => $status, 'headers' => $headers, 'body' => $body];
     }
 
-    /**
-     * @return resource
-     */
-    private function initializeCurl()
+    private function initializeCurl(): \CurlHandle
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
@@ -105,7 +99,7 @@ abstract class AbstractIntegrationTest extends TestCase
                 continue;
             }
 
-            $key = mb_strtolower(trim(substr($headerRow, 0, $pos)));
+            $key = strtolower(trim(substr($headerRow, 0, $pos)));
             $value = trim(substr($headerRow, $pos + 1));
 
             if ('' === $value) {
@@ -126,12 +120,12 @@ abstract class AbstractIntegrationTest extends TestCase
 
     private function getEndpoint(): string
     {
-        $integrationEndpoint = getenv(PhpServerTestHook::ENV_INTEGRATION_ENDPOINT);
+        $integrationEndpoint = getenv(PhpServerExtension::ENV_INTEGRATION_ENDPOINT);
 
         if (false !== $integrationEndpoint) {
             return $integrationEndpoint;
         }
 
-        return sprintf(self::DEFAULT_INTEGRATION_ENDPOINT, PhpServerTestHook::PHP_SERVER_PORT);
+        return sprintf(self::DEFAULT_INTEGRATION_ENDPOINT, PhpServerExtension::PHP_SERVER_PORT);
     }
 }

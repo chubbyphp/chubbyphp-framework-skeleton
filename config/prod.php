@@ -18,7 +18,7 @@ use Chubbyphp\Framework\Middleware\RouteMatcherMiddleware;
 use Chubbyphp\Framework\Router\RouteMatcherInterface;
 use Chubbyphp\Framework\Router\RoutesByNameInterface;
 use Chubbyphp\Framework\Router\UrlGeneratorInterface;
-use Monolog\Logger;
+use Monolog\Level;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Log\LoggerInterface;
@@ -54,6 +54,6 @@ return [
     'monolog' => [
         'name' => 'skeleton',
         'path' => $logDir.'/'.$env.'.log',
-        'level' => Logger::NOTICE,
+        'level' => Level::Notice,
     ],
 ];

@@ -11,8 +11,9 @@ use Chubbyphp\Mock\MockByCallsTrait;
 use Monolog\Formatter\LogstashFormatter;
 use Monolog\Handler\BufferHandler;
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 use Monolog\Logger;
-use PHPUnit\Framework\MockObject\MockObject;
+use Monolog\LogRecord;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -34,11 +35,11 @@ final class LoggerFactoryTest extends TestCase
             'monolog' => [
                 'name' => 'test',
                 'path' => $path,
-                'level' => Logger::NOTICE,
+                'level' => Level::Notice,
             ],
         ];
 
-        /** @var ContainerInterface|MockObject $container */
+        /** @var ContainerInterface $container */
         $container = $this->getMockByCalls(ContainerInterface::class, [
             Call::create('get')->with('config')->willReturn($config),
         ]);
@@ -66,13 +67,15 @@ final class LoggerFactoryTest extends TestCase
         self::assertInstanceOf(StreamHandler::class, $streamHandler);
 
         self::assertSame($path, $streamHandler->getUrl());
-        self::assertSame(Logger::NOTICE, $streamHandler->getLevel());
+        self::assertSame(Level::Notice, $streamHandler->getLevel());
 
         /** @var LogstashFormatter $logstashFormatter */
         $logstashFormatter = $streamHandler->getFormatter();
 
         self::assertInstanceOf(LogstashFormatter::class, $logstashFormatter);
 
-        self::assertStringContainsString('"type":"app"', $logstashFormatter->format([]));
+        $record = new LogRecord(new \DateTimeImmutable('2023-12-31T12:15:00Z'), 'channel', Level::Notice, 'message');
+
+        self::assertStringContainsString('"type":"app"', $logstashFormatter->format($record));
     }
 }
