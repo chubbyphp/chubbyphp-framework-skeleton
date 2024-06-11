@@ -29,13 +29,17 @@ final class PingRequestHandlerTest extends TestCase
         /** @var MockObject|ServerRequestInterface $request */
         $request = $this->getMockByCalls(ServerRequestInterface::class);
 
+        $bodyLength = 0;
+
         /** @var MockObject|StreamInterface $body */
         $body = $this->getMockByCalls(StreamInterface::class, [
-            Call::create('write')->with(new ArgumentCallback(static function (string $body): void {
+            Call::create('write')->with(new ArgumentCallback(static function (string $body) use (&$bodyLength): void {
                 $data = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 
                 self::assertArrayHasKey('datetime', $data);
-            })),
+
+                $bodyLength = \strlen($body);
+            }))->willReturn($bodyLength),
         ]);
 
         /** @var MockObject|ResponseInterface $response */
