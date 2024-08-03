@@ -1,0 +1,24 @@
+services:
+  php:
+    container_name: chubbyphp-framework-skeleton-php
+    hostname: chubbyphp-framework-skeleton-php
+    build:
+      dockerfile: ./docker/production/php/Dockerfile
+      context: ./
+    environment:
+      APP_ENV: prod
+  nginx:
+    container_name: chubbyphp-framework-skeleton-nginx
+    hostname: chubbyphp-framework-skeleton-nginx
+    image: nginx
+    environment:
+      SERVER_PORT: '443'
+      PHP_FPM_SERVER_HOST: 'php'
+      PHP_FPM_SERVER_PORT: '9000'
+    ports:
+      - '443:443'
+    volumes:
+      - ./docker/development/nginx:/etc/nginx/templates
+      - ${PWD}:/app:ro
+    depends_on:
+      - php

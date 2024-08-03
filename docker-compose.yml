@@ -1,0 +1,41 @@
+services:
+  php:
+    container_name: chubbyphp-framework-skeleton-php
+    hostname: chubbyphp-framework-skeleton-php
+    build:
+      dockerfile: ./docker/development/php/Dockerfile
+      context: ./
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    environment:
+      APP_ENV: dev
+      SSH_AUTH_SOCK: /ssh-agent
+    volumes:
+      - ${PWD}:/app
+      - ~/.bash_docker:/home/php/.bash_docker
+      - ~/.bash_history:/home/php/.bash_history
+      - ~/.gitconfig:/home/php/.gitconfig
+      - ~/.gitignore:/home/php/.gitignore
+      - ~/.zsh_docker:/home/php/.zsh_docker
+      - ~/.zsh_history:/home/php/.zsh_history
+      - $SSH_AUTH_SOCK:/ssh-agent
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - '9003:9003'
+  nginx:
+    container_name: chubbyphp-framework-skeleton-nginx
+    hostname: chubbyphp-framework-skeleton-nginx
+    image: nginx
+    environment:
+      SERVER_PORT: '443'
+      PHP_FPM_SERVER_HOST: 'php'
+      PHP_FPM_SERVER_PORT: '9000'
+    ports:
+      - '443:443'
+    volumes:
+      - ./docker/development/nginx:/etc/nginx/templates
+      - ${PWD}/public:/app/public:ro
+    depends_on:
+      - php

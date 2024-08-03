@@ -1,0 +1,26 @@
+access_log /var/log/nginx/access.log;
+error_log /var/log/nginx/error.log;
+
+server {
+    listen ${SERVER_PORT} default_server ssl http2;
+
+    ssl_certificate /etc/nginx/templates/certificate;
+    ssl_certificate_key /etc/nginx/templates/certificate_key;
+
+    root /app/public;
+
+    location / {
+        try_files $uri /index.php$is_args$args;
+    }
+
+    location ~ \.php {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_index index.php;
+        fastcgi_pass ${PHP_FPM_SERVER_HOST}:${PHP_FPM_SERVER_PORT};
+        fastcgi_read_timeout 600;
+    }
+}

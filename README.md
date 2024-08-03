@@ -31,21 +31,31 @@ A minimal skeleton to start with a minimal php project.
  * [slim/psr7][25]: ^1.6.1
  * [symfony/console][26]: ^6.4.2
 
-## Installation
+## Environment
 
-Through [Composer](http://getcomposer.org) as [chubbyphp/chubbyphp-framework-skeleton][10].
+Add the following environment variable to your system, for example within `~/.bash_aliases`:
 
-```bash
-composer create-project chubbyphp/chubbyphp-framework-skeleton myproject "dev-master"
+```sh
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
 ```
 
-## Server
+### Docker
 
-### Builtin
-
-```bash
-APP_ENV=dev php -S localhost:10080 -t public public/index.php
+```sh
+docker-compose up -d
+docker-compose exec php bash
 ```
+
+## Setup
+
+```sh
+composer install
+```
+
+## Urls
+
+* GET https://localhost/ping
 
 ## Copyright
 
