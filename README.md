@@ -1,6 +1,6 @@
 # chubbyphp-framework-skeleton
 
-[![CI](https://github.com/chubbyphp/chubbyphp-framework-skeleton/workflows/CI/badge.svg?branch=master)](https://github.com/chubbyphp/chubbyphp-framework-skeleton/actions?query=workflow%3ACI)
+[![CI](https://github.com/chubbyphp/chubbyphp-framework-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/chubbyphp/chubbyphp-framework-skeleton/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/chubbyphp/chubbyphp-framework-skeleton/badge.svg?branch=master)](https://coveralls.io/github/chubbyphp/chubbyphp-framework-skeleton?branch=master)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fchubbyphp%2Fchubbyphp-framework-skeleton%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/chubbyphp/chubbyphp-framework-skeleton/master)
 
