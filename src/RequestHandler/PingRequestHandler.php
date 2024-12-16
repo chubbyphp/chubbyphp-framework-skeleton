@@ -22,7 +22,7 @@ final class PingRequestHandler implements RequestHandlerInterface
             ->withHeader('Expires', '0')
         ;
 
-        /** @var string $body */
+        /** @var non-empty-string $body */
         $body = json_encode(['datetime' => date(\DateTime::ATOM)], JSON_THROW_ON_ERROR);
 
         $response->getBody()->write($body);
