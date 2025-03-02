@@ -6,9 +6,8 @@ namespace App\Tests\Unit\ServiceFactory\Framework;
 
 use App\ServiceFactory\Framework\ExceptionMiddlewareFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
-use Chubbyphp\Mock\Call;
-use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Chubbyphp\Mock\MockMethod\WithReturn;
+use Chubbyphp\Mock\MockObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -21,25 +20,25 @@ use Psr\Log\LoggerInterface;
  */
 final class ExceptionMiddlewareFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
-        /** @var MockObject|ResponseFactoryInterface $responseFactory */
-        $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
+        $builder = new MockObjectBuilder();
 
-        /** @var LoggerInterface|MockObject $logger */
-        $logger = $this->getMockByCalls(LoggerInterface::class);
+        /** @var ResponseFactoryInterface $responseFactory */
+        $responseFactory = $builder->create(ResponseFactoryInterface::class, []);
+
+        /** @var LoggerInterface $logger */
+        $logger = $builder->create(LoggerInterface::class, []);
 
         $config = [
             'debug' => true,
         ];
 
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with(ResponseFactoryInterface::class)->willReturn($responseFactory),
-            Call::create('get')->with('config')->willReturn($config),
-            Call::create('get')->with(LoggerInterface::class)->willReturn($logger),
+        /** @var ContainerInterface $container */
+        $container = $builder->create(ContainerInterface::class, [
+            new WithReturn('get', [ResponseFactoryInterface::class], $responseFactory),
+            new WithReturn('get', ['config'], $config),
+            new WithReturn('get', [LoggerInterface::class], $logger),
         ]);
 
         $factory = new ExceptionMiddlewareFactory();

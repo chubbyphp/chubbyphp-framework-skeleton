@@ -7,9 +7,8 @@ namespace App\Tests\Unit\ServiceFactory\Framework;
 use App\ServiceFactory\Framework\RouteMatcherFactory;
 use Chubbyphp\Framework\Router\RouteMatcherInterface;
 use Chubbyphp\Framework\Router\RoutesByNameInterface;
-use Chubbyphp\Mock\Call;
-use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Chubbyphp\Mock\MockMethod\WithReturn;
+use Chubbyphp\Mock\MockObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -20,8 +19,6 @@ use Psr\Container\ContainerInterface;
  */
 final class RouteMatcherFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
         $config = [
@@ -30,15 +27,17 @@ final class RouteMatcherFactoryTest extends TestCase
             ],
         ];
 
-        /** @var ContainerInterface|MockObject $routesByName */
-        $routesByName = $this->getMockByCalls(RoutesByNameInterface::class, [
-            Call::create('getRoutesByName')->with()->willReturn([]),
+        $builder = new MockObjectBuilder();
+
+        /** @var RoutesByNameInterface $routesByName */
+        $routesByName = $builder->create(RoutesByNameInterface::class, [
+            new WithReturn('getRoutesByName', [], []),
         ]);
 
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with(RoutesByNameInterface::class)->willReturn($routesByName),
-            Call::create('get')->with('config')->willReturn($config),
+        /** @var ContainerInterface $container */
+        $container = $builder->create(ContainerInterface::class, [
+            new WithReturn('get', [RoutesByNameInterface::class], $routesByName),
+            new WithReturn('get', ['config'], $config),
         ]);
 
         $factory = new RouteMatcherFactory();

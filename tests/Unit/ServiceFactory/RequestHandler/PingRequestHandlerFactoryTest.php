@@ -6,9 +6,8 @@ namespace App\Tests\Unit\ServiceFactory\RequestHandler;
 
 use App\RequestHandler\PingRequestHandler;
 use App\ServiceFactory\RequestHandler\PingRequestHandlerFactory;
-use Chubbyphp\Mock\Call;
-use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Chubbyphp\Mock\MockMethod\WithReturn;
+use Chubbyphp\Mock\MockObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -20,16 +19,16 @@ use Psr\Http\Message\ResponseFactoryInterface;
  */
 final class PingRequestHandlerFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
-        /** @var MockObject|ResponseFactoryInterface $responseFactory */
-        $responseFactory = $this->getMockByCalls(ResponseFactoryInterface::class);
+        $builder = new MockObjectBuilder();
 
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with(ResponseFactoryInterface::class)->willReturn($responseFactory),
+        /** @var ResponseFactoryInterface $responseFactory */
+        $responseFactory = $builder->create(ResponseFactoryInterface::class, []);
+
+        /** @var ContainerInterface $container */
+        $container = $builder->create(ContainerInterface::class, [
+            new WithReturn('get', [ResponseFactoryInterface::class], $responseFactory),
         ]);
 
         $factory = new PingRequestHandlerFactory();
