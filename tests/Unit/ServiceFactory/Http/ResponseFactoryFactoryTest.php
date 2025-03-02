@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ServiceFactory\Http;
 
 use App\ServiceFactory\Http\ResponseFactoryFactory;
-use Chubbyphp\Mock\MockByCallsTrait;
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ResponseFactory;
 
@@ -16,8 +15,6 @@ use Slim\Psr7\Factory\ResponseFactory;
  */
 final class ResponseFactoryFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
         $factory = new ResponseFactoryFactory();

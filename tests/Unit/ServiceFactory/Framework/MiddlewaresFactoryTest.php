@@ -8,8 +8,7 @@ use App\ServiceFactory\Framework\MiddlewaresFactory;
 use Chubbyphp\Framework\Middleware\ExceptionMiddleware;
 use Chubbyphp\Framework\Middleware\LazyMiddleware;
 use Chubbyphp\Framework\Middleware\RouteMatcherMiddleware;
-use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Chubbyphp\Mock\MockObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -20,12 +19,12 @@ use Psr\Container\ContainerInterface;
  */
 final class MiddlewaresFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class);
+        $builder = new MockObjectBuilder();
+
+        /** @var ContainerInterface $container */
+        $container = $builder->create(ContainerInterface::class, []);
 
         $factory = new MiddlewaresFactory();
 

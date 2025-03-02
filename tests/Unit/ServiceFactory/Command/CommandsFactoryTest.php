@@ -6,9 +6,8 @@ namespace App\Tests\Unit\ServiceFactory\Command;
 
 use App\ServiceFactory\Command\CommandsFactory;
 use Chubbyphp\CleanDirectories\Command\CleanDirectoriesCommand;
-use Chubbyphp\Mock\Call;
-use Chubbyphp\Mock\MockByCallsTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Chubbyphp\Mock\MockMethod\WithReturn;
+use Chubbyphp\Mock\MockObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -19,13 +18,13 @@ use Psr\Container\ContainerInterface;
  */
 final class CommandsFactoryTest extends TestCase
 {
-    use MockByCallsTrait;
-
     public function testInvoke(): void
     {
-        /** @var ContainerInterface|MockObject $container */
-        $container = $this->getMockByCalls(ContainerInterface::class, [
-            Call::create('get')->with('config')->willReturn(['directories' => ['directoryName' => 'directoryPath']]),
+        $builder = new MockObjectBuilder();
+
+        /** @var ContainerInterface $container */
+        $container = $builder->create(ContainerInterface::class, [
+            new WithReturn('get', ['config'], ['directories' => ['directoryName' => 'directoryPath']]),
         ]);
 
         $factory = new CommandsFactory();
