@@ -27,9 +27,9 @@ A minimal skeleton to start with a minimal php project.
  * [chubbyphp/chubbyphp-framework][21]: ^5.2
  * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^2.2
  * [chubbyphp/chubbyphp-laminas-config][23]: ^1.4
- * [monolog/monolog][24]: ^3.8.1
- * [slim/psr7][25]: ^1.7
- * [symfony/console][26]: ^7.2.1
+ * [monolog/monolog][24]: ^3.9
+ * [slim/psr7][25]: ^1.7.1
+ * [symfony/console][26]: ^7.3.2
 
 ## Environment
 
