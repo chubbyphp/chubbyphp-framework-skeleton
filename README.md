@@ -29,7 +29,7 @@ A minimal skeleton to start with a minimal php project.
  * [chubbyphp/chubbyphp-laminas-config][23]: ^1.5
  * [monolog/monolog][24]: ^3.9
  * [slim/psr7][25]: ^1.8
- * [symfony/console][26]: ^7.4
+ * [symfony/console][26]: ^7.4.1|^8.0.1
 
 ## Environment
 
