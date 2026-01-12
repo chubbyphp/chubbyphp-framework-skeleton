@@ -81,7 +81,7 @@ composer install
 
 ## Copyright
 
-2025 Dominik Zogg
+2026 Dominik Zogg
 
 [10]: https://travis-ci.org/chubbyphp/chubbyphp-framework-skeleton
 
