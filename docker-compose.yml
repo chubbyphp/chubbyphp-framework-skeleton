@@ -1,3 +1,4 @@
+name: chubbyphp-framework-skeleton
 services:
   php:
     container_name: chubbyphp-framework-skeleton-php
