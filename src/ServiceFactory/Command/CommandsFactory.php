@@ -11,7 +11,7 @@ use Symfony\Component\Console\Command\Command;
 final class CommandsFactory
 {
     /**
-     * @return array<int, Command>
+     * @return list<Command>
      */
     public function __invoke(ContainerInterface $container): array
     {
