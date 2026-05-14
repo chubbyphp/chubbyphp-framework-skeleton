@@ -10,6 +10,7 @@ RUN dnf install -y --nobest \
     git \
     glibc-langpack-de \
     langpacks-de \
+    libatomic \
     nmap-ncat \
     php85-php-ast \
     php85-php-cli \
