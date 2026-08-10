@@ -13,6 +13,7 @@ services:
     environment:
       APP_ENV: dev
       SSH_AUTH_SOCK: /ssh-agent
+      LLAMA_BASE_URL: http://host.docker.internal:9931/v1
     volumes:
       - ${PWD}:/app
       - $SSH_AUTH_SOCK:/ssh-agent
