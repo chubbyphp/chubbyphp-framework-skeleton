@@ -23,13 +23,13 @@ A minimal skeleton to start with a minimal php project.
 ## Requirements
 
  * php: ^8.3
- * [chubbyphp/chubbyphp-clean-directories][20]: ^1.5.2
- * [chubbyphp/chubbyphp-framework][21]: ^6.0.3
- * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^2.3.4
- * [chubbyphp/chubbyphp-laminas-config][23]: ^1.5.2
- * [monolog/monolog][24]: ^3.10
+ * [chubbyphp/chubbyphp-clean-directories][20]: ^1.5.3
+ * [chubbyphp/chubbyphp-framework][21]: ^6.1.2
+ * [chubbyphp/chubbyphp-framework-router-fastroute][22]: ^2.3.5
+ * [chubbyphp/chubbyphp-laminas-config][23]: ^1.5.3
+ * [monolog/monolog][24]: ^3.11.0
  * [slim/psr7][25]: ^1.8
- * [symfony/console][26]: ^7.4.14|^8.1.1
+ * [symfony/console][26]: ^7.4.18|^8.1.6
 
 ## Environment
 
